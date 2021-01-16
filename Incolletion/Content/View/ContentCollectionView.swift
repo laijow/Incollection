@@ -11,10 +11,12 @@ import UIKit
 class ContentCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout = UICollectionViewLayout()) {
-        let rowLayout = RowLayout()
+        let rowLayout = ContentCollectionViewLayout()
         super.init(frame: frame, collectionViewLayout: rowLayout)
         
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        alwaysBounceVertical = true
+        indicatorStyle = .white
         backgroundColor = .mainWhite()
         
         delegate = self
@@ -38,7 +40,7 @@ extension ContentCollectionView: UICollectionViewDelegate {
 extension ContentCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

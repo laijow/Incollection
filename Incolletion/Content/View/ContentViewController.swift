@@ -37,6 +37,7 @@ class ContentViewController: UIViewController {
 import SwiftUI
 
 struct ContentViewControllerProvider: PreviewProvider {
+    @available(iOS 13.0.0, *)
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
@@ -45,10 +46,12 @@ struct ContentViewControllerProvider: PreviewProvider {
         
         let viewController = ContentViewController()
         
+        @available(iOS 13.0, *)
         func makeUIViewController(context: UIViewControllerRepresentableContext<ContentViewControllerProvider.ContainerView>) -> ContentViewController {
             return viewController
         }
         
+        @available(iOS 13.0, *)
         func updateUIViewController(_ uiViewController: ContentViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ContentViewControllerProvider.ContainerView>) {
             
         }

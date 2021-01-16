@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "11F3C8F0-7B1E-43D3-9AEC-F62221A22C55"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AFE1D5DE-72E2-4C46-9249-9FD62079E154"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Incolletion/Authorize/View/ViewModel/AuthorizeViewControllerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "showInstagramLoginViewController()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AFE1D5DE-72E2-4C46-9249-9FD62079E154 - 843ce02862d72289"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in Incolletion.AuthorizeViewControllerViewModel.showInstagramLoginViewController() -&gt; ()"
+                  moduleName = "Incolletion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anatolijem/Desktop/Projects/Incolletion/Incolletion/Authorize/View/ViewModel/AuthorizeViewControllerViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "255">
+               </Location>
+               <Location
+                  uuid = "AFE1D5DE-72E2-4C46-9249-9FD62079E154 - 843ce02862d72289"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, Swift.Error&gt;) -&gt; () in Incolletion.AuthorizeViewControllerViewModel.showInstagramLoginViewController() -&gt; ()"
+                  moduleName = "Incolletion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anatolijem/Desktop/Projects/Incolletion/Incolletion/Authorize/View/ViewModel/AuthorizeViewControllerViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "290">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72092B8C-A778-4271-B407-46F6785B3A90"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Incolletion/Authorize/View/InstagramLoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "578DF6DA-AC5D-4EF5-A4AD-BDBE24E5602F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Incolletion/Authorize/View/ViewModel/InstagramLoginViewControllerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "transform(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
