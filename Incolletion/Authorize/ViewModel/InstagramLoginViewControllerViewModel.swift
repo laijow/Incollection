@@ -6,10 +6,29 @@
 //
 
 import Foundation
+import WebKit
 import RxSwift
 import RxCocoa
 
-class InstagramLoginViewControllerViewModel: ViewModel {
+class InstagramLoginViewControllerViewModel {
+    
+    private let authorizeService: AuthorizeServiceResolver
+    private let relayBeginFinish = PublishRelay<InstagramTokenResult>()
+    
+    init(authorizeService: AuthorizeServiceResolver) {
+        self.authorizeService = authorizeService
+    }
+    
+    func authorizeFinished(stringURL: String) -> Bool {
+        return stringURL.contains("?code=")
+    }
+    
+    private func resolve(_ result: InstagramTokenResult) {
+        authorizeService.resolve(result: result)
+    }
+}
+
+extension InstagramLoginViewControllerViewModel: ViewModel {
     
     struct Input {
         let authorized: Signal<String>
@@ -19,13 +38,6 @@ class InstagramLoginViewControllerViewModel: ViewModel {
     struct Output {
         let beginFinish: Driver<InstagramTokenResult>
         let endFinish: Driver<Bool>
-    }
-    
-    private let authorizeService: AuthorizeServiceResolver
-    private let relayBeginFinish = PublishRelay<InstagramTokenResult>()
-    
-    init(authorizeService: AuthorizeServiceResolver) {
-        self.authorizeService = authorizeService
     }
     
     func transform(from input: Input) -> Output {
@@ -43,9 +55,5 @@ class InstagramLoginViewControllerViewModel: ViewModel {
         let beginFinish = Signal.merge(autorized, relayBeginFinish.asSignal())
             .asDriver { Driver.just(.failure($0)) }
         return Output(beginFinish: beginFinish, endFinish: endFinish)
-    }
-    
-    private func resolve(_ result: InstagramTokenResult) {
-        authorizeService.resolve(result: result)
     }
 }

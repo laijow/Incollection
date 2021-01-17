@@ -9,27 +9,13 @@ import Foundation
 import UIKit
 import RxSwift
 
-protocol AuthorizeServiceResolver {
-    func resolve(result: InstagramTokenResult)
-}
-
-protocol AuthorizeServiceStarter {
-    func start() -> Observable<InstagramTokenResult>
-}
-
-class AuthorizeService: AuthorizeServiceStarter {
+class AuthorizeService {
+    
     private let router: Router
     private let resolved = PublishSubject<InstagramTokenResult>()
     
     init(router: Router = DefaultRouter()) {
         self.router = router
-    }
-    
-    func start() -> Observable<InstagramTokenResult> {
-        presentAuthorization().flatMap {[weak self] _ -> Observable<InstagramTokenResult> in
-            guard let self = self else { return Observable.just(.failure(ErrorType.InvalidObject)) }
-            return self.resolved.asObserver().share()
-        }
     }
         
     private func presentAuthorization() -> Observable<Void> {
@@ -42,7 +28,7 @@ class AuthorizeService: AuthorizeServiceStarter {
     }
     
     private func buildAuthURL() -> URL {
-        var components = URLComponents(string: InstagramApi.authStringURL)!
+        var components = URLComponents(string: InstagramApi.getStringURL(.authorize))!
         
         components.queryItems = [
             URLQueryItem(name: "client_id", value: InstagramApi.instagramAppID),
@@ -56,7 +42,18 @@ class AuthorizeService: AuthorizeServiceStarter {
     
 }
 
+extension AuthorizeService: AuthorizeServiceStarter {
+    
+    func start() -> Observable<InstagramTokenResult> {
+        presentAuthorization().flatMap {[weak self] _ -> Observable<InstagramTokenResult> in
+            guard let self = self else { return Observable.just(.failure(ErrorType.InvalidObject)) }
+            return self.resolved.asObserver().share()
+        }
+    }
+}
+
 extension AuthorizeService: AuthorizeServiceResolver {
+    
     func resolve(result: InstagramTokenResult) {
         resolved.onNext(result)
     }

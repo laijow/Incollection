@@ -17,15 +17,15 @@ class InstagramLoginViewController: UIViewController {
     private var webViewObservation: NSKeyValueObservation!
     
     private let viewModel: InstagramLoginViewControllerViewModel
+    private let authURL: URL
     
+    // Rx
     private let disposeBag = DisposeBag()
     private let relayAuthorized = PublishRelay<String>()
     private let relayEndFinish = PublishRelay<InstagramTokenResult>()
     
-    private let authUrl: URL
-    
     init(authUrl: URL, viewModel: InstagramLoginViewControllerViewModel) {
-        self.authUrl = authUrl
+        self.authURL = authUrl
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,7 +44,7 @@ class InstagramLoginViewController: UIViewController {
         let webView = makeWebView()
 
         // Starts authorization
-        webView.load(URLRequest(url: authUrl, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData))
+        webView.load(URLRequest(url: authURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData))
         
         bindToModel()
     }
@@ -54,8 +54,90 @@ class InstagramLoginViewController: UIViewController {
         webViewObservation.invalidate()
     }
 
-    // MARK: Setup
+    @objc func dismissViewController() {
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    private func progressViewChangeHandler<Value>(webView: WKWebView, change: NSKeyValueObservedChange<Value>) {
+        progressView.alpha = 1.0
+        progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+
+        if webView.estimatedProgress >= 1.0 {
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {
+                self.progressView.alpha = 0.0
+            }, completion: { _ in
+                self.progressView.progress = 0
+            })
+        }
+    }
+}
+
+// MARK: binde to model
+extension InstagramLoginViewController {
     
+    private func bindToModel() {
+        let input = InstagramLoginViewControllerViewModel.Input(authorized: relayAuthorized.asSignal(),
+                                                                endFinish: relayEndFinish.asSignal())
+        let output = viewModel.transform(from: input)
+        
+        disposeBag.insert(
+            output.beginFinish.drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.relayEndFinish.accept(result)
+            }),
+            output.endFinish.drive()
+        )
+    }
+}
+
+// MARK: Make web view
+extension InstagramLoginViewController {
+    
+    private func makeWebView() -> WKWebView {
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.websiteDataStore = .nonPersistent()
+
+        let webView = WKWebView(frame: view.frame, configuration: webConfiguration)
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+
+        webViewObservation = webView.observe(\.estimatedProgress, changeHandler: progressViewChangeHandler)
+
+        view.addSubview(webView)
+
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: progressView.bottomAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        return webView
+    }
+}
+
+// MARK: Setup progress view
+extension InstagramLoginViewController {
+    private func setupProgressView() {
+
+        progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.progress = 0.0
+        progressView.tintColor = UIColor(red: 0.88, green: 0.19, blue: 0.42, alpha: 1.0)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+
+        customNavBar.addSubview(progressView)
+
+        NSLayoutConstraint.activate([
+            customNavBar.bottomAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 1),
+            customNavBar.leadingAnchor.constraint(equalTo: progressView.leadingAnchor),
+            customNavBar.trailingAnchor.constraint(equalTo: progressView.trailingAnchor)
+        ])
+    }
+}
+
+// MARK: Setup custom navigation bar
+extension InstagramLoginViewController {
     private func setupCustomNavBar() {
         let navBarHeight: CGFloat = 50
         let closeButtonMargin: CGFloat = 5
@@ -83,6 +165,7 @@ class InstagramLoginViewController: UIViewController {
         titleLabel.textAlignment = .center
         
         closeButton.tintColor = .black
+        closeButton.setImage(UIImage(named: "bottomArrow"), for: .normal)
         closeButton.setTitle("􀄩", for: .normal)
         closeButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
         
@@ -105,79 +188,6 @@ class InstagramLoginViewController: UIViewController {
             closeButton.widthAnchor.constraint(equalToConstant: navBarHeight - (closeButtonMargin * 2))
         ])
     }
-    
-    @objc func dismissViewController() {
-        dismiss(animated: true, completion: nil)
-    }
-
-    private func setupProgressView() {
-
-        progressView = UIProgressView(progressViewStyle: .bar)
-        progressView.progress = 0.0
-        progressView.tintColor = UIColor(red: 0.88, green: 0.19, blue: 0.42, alpha: 1.0)
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-
-        customNavBar.addSubview(progressView)
-
-        NSLayoutConstraint.activate([
-            customNavBar.bottomAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 1),
-            customNavBar.leadingAnchor.constraint(equalTo: progressView.leadingAnchor),
-            customNavBar.trailingAnchor.constraint(equalTo: progressView.trailingAnchor)
-        ])
-    }
-
-    private func makeWebView() -> WKWebView {
-        let webConfiguration = WKWebViewConfiguration()
-        webConfiguration.websiteDataStore = .nonPersistent()
-
-        let webView = WKWebView(frame: view.frame, configuration: webConfiguration)
-        webView.navigationDelegate = self
-        webView.translatesAutoresizingMaskIntoConstraints = false
-
-        webViewObservation = webView.observe(\.estimatedProgress, changeHandler: progressViewChangeHandler)
-
-        view.addSubview(webView)
-
-        NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: progressView.bottomAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-
-        return webView
-    }
-
-    private func progressViewChangeHandler<Value>(webView: WKWebView, change: NSKeyValueObservedChange<Value>) {
-        progressView.alpha = 1.0
-        progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-
-        if webView.estimatedProgress >= 1.0 {
-            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {
-                self.progressView.alpha = 0.0
-            }, completion: { _ in
-                self.progressView.progress = 0
-            })
-        }
-    }
-
-}
-
-// MARK: binde to model
-extension InstagramLoginViewController {
-    private func bindToModel() {
-        let input = InstagramLoginViewControllerViewModel.Input(authorized: relayAuthorized.asSignal(),
-                                                                endFinish: relayEndFinish.asSignal())
-        let output = viewModel.transform(from: input)
-        
-        disposeBag.insert(
-            output.beginFinish.drive(onNext: { [weak self] result in
-                guard let self = self else { return }
-                self.relayEndFinish.accept(result)
-            }),
-            output.endFinish.drive()
-        )
-    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -188,16 +198,16 @@ extension InstagramLoginViewController: WKNavigationDelegate {
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
-        let urlString = navigationAction.request.url!.absoluteString
-
-        guard urlString.contains("?code=") else {
+        let stringURL = navigationAction.request.url!.absoluteString
+        
+        guard viewModel.authorizeFinished(stringURL: stringURL) else {
             decisionHandler(.allow)
             return
         }
 
         decisionHandler(.cancel)
 
-        relayAuthorized.accept(urlString)
+        relayAuthorized.accept(stringURL)
     }
 
     func webView(_ webView: WKWebView,

@@ -29,11 +29,19 @@ class AuthorizeViewControllerViewModel {
             .subscribe(onNext: { [weak self] result in
                 switch result {
                 case .success(let accessToken) :
-                    self?.delegate?.onAuthorizeResult(error: nil)
+                    self?.onAuthorizeResult(accessToken, nil)
                 case .failure(let error) :
-                    self?.delegate?.onAuthorizeResult(error: error)
+                    self?.onAuthorizeResult(nil, error)
                 }
             }).disposed(by: disposeBag)
+    }
+    
+    private func onAuthorizeResult(_ accessToken: String?, _ error: Error?) {
+        DispatchQueue.main.async { [weak self] in
+            AppSettings[.accessToken] = accessToken
+            AppSettings[.isLoggedIn] = true
+            self?.delegate?.onAuthorizeResult(error: error)
+        }
     }
     
 }

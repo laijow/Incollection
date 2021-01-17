@@ -46,6 +46,11 @@ class AuthorizeViewController: UIViewController {
 
 extension AuthorizeViewController: AuthorizeViewControllerViewModelDelegate {
     func onAuthorizeResult(error: Error?) {
-        print(error?.localizedDescription)
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }
