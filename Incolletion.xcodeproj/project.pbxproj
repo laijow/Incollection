@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11009AC225B3CA7A00DC3940 /* DefaultTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009AC125B3CA7A00DC3940 /* DefaultTokenRepository.swift */; };
+		11009AC825B3CC7900DC3940 /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009AC725B3CC7900DC3940 /* TokenRepository.swift */; };
+		11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009ACB25B3CC9B00DC3940 /* DefaultRouter.swift */; };
+		11009ADC25B3CD4400DC3940 /* AuthorizeServiceResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */; };
+		11009AE225B3CD5A00DC3940 /* AuthorizeServiceStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */; };
 		11735A8625B1CCD400C27FBB /* AuthorizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735A8525B1CCD400C27FBB /* AuthorizeService.swift */; };
 		11735A8E25B1D11900C27FBB /* InstagramLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735A8D25B1D11900C27FBB /* InstagramLoginViewController.swift */; };
 		11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AAA25B1D95800C27FBB /* ContentViewControllerViewModel.swift */; };
@@ -16,6 +21,7 @@
 		11735AE125B28AD600C27FBB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AE025B28AD600C27FBB /* ErrorType.swift */; };
 		11735AF125B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AF025B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift */; };
 		11735AF925B2D1A500C27FBB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AF825B2D1A500C27FBB /* ViewModel.swift */; };
+		11735B0D25B340C100C27FBB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735B0C25B340C100C27FBB /* AppSettings.swift */; };
 		11B6529325AF419F00215FD4 /* CGRect + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6529225AF419F00215FD4 /* CGRect + Extension.swift */; };
 		11B652F825B161E100215FD4 /* InstagramApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B652F725B161E100215FD4 /* InstagramApi.swift */; };
 		11B652FC25B164E900215FD4 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B652FB25B164E900215FD4 /* InstagramResponse.swift */; };
@@ -47,6 +53,11 @@
 /* Begin PBXFileReference section */
 		07900A267DF8A908F1F47042 /* Pods-Incolletion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Incolletion.release.xcconfig"; path = "Target Support Files/Pods-Incolletion/Pods-Incolletion.release.xcconfig"; sourceTree = "<group>"; };
 		10DFFE221D396D045FC169DE /* Pods_Incolletion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Incolletion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11009AC125B3CA7A00DC3940 /* DefaultTokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTokenRepository.swift; sourceTree = "<group>"; };
+		11009AC725B3CC7900DC3940 /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
+		11009ACB25B3CC9B00DC3940 /* DefaultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRouter.swift; sourceTree = "<group>"; };
+		11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceResolver.swift; sourceTree = "<group>"; };
+		11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceStarter.swift; sourceTree = "<group>"; };
 		11735A8525B1CCD400C27FBB /* AuthorizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeService.swift; sourceTree = "<group>"; };
 		11735A8D25B1D11900C27FBB /* InstagramLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLoginViewController.swift; sourceTree = "<group>"; };
 		11735AAA25B1D95800C27FBB /* ContentViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewControllerViewModel.swift; sourceTree = "<group>"; };
@@ -56,6 +67,7 @@
 		11735AE025B28AD600C27FBB /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		11735AF025B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLoginViewControllerViewModel.swift; sourceTree = "<group>"; };
 		11735AF825B2D1A500C27FBB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		11735B0C25B340C100C27FBB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		11B6529225AF419F00215FD4 /* CGRect + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect + Extension.swift"; sourceTree = "<group>"; };
 		11B652F725B161E100215FD4 /* InstagramApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramApi.swift; sourceTree = "<group>"; };
 		11B652FB25B164E900215FD4 /* InstagramResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramResponse.swift; sourceTree = "<group>"; };
@@ -100,6 +112,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11009AB525B3CA1800DC3940 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				11735ADA25B283E500C27FBB /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		11009AB825B3CA3600DC3940 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				11735B0C25B340C100C27FBB /* AppSettings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		11009ABB25B3CA4700DC3940 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				11735AE025B28AD600C27FBB /* ErrorType.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		11009ABE25B3CA5300DC3940 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11B652FB25B164E900215FD4 /* InstagramResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		11009ACF25B3CCBB00DC3940 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				11009AC725B3CC7900DC3940 /* TokenRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		11009AD225B3CCC500DC3940 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				11009ACF25B3CCBB00DC3940 /* Repository */,
+				11009AB525B3CA1800DC3940 /* Router */,
+				11009AE525B3CD6600DC3940 /* Service */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		11009AD525B3CCD200DC3940 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				11009AC125B3CA7A00DC3940 /* DefaultTokenRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		11009AD825B3CCE500DC3940 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				11009ACB25B3CC9B00DC3940 /* DefaultRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		11009AE525B3CD6600DC3940 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */,
+				11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		11009AEA25B3CDA600DC3940 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				11009AEF25B3CDC000DC3940 /* API */,
+				11B6532125B16AF000215FD4 /* Service */,
+				11009AD525B3CCD200DC3940 /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		11009AEF25B3CDC000DC3940 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				11B652F725B161E100215FD4 /* InstagramApi.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		11735AAE25B1DAC700C27FBB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				11735ABE25B1DDE100C27FBB /* View */,
+				11735AC525B1E0A700C27FBB /* ViewModel */,
 			);
 			path = Authorize;
 			sourceTree = "<group>";
@@ -121,7 +227,6 @@
 			children = (
 				11735AB725B1DD6B00C27FBB /* AuthorizeViewController.swift */,
 				11735A8D25B1D11900C27FBB /* InstagramLoginViewController.swift */,
-				11735AC525B1E0A700C27FBB /* ViewModel */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,13 +250,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		11B6532125B16AF000215FD4 /* Services */ = {
+		11B6532125B16AF000215FD4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				11B652F725B161E100215FD4 /* InstagramApi.swift */,
 				11735A8525B1CCD400C27FBB /* AuthorizeService.swift */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		11D3903825AB3F230014B3B1 = {
@@ -178,10 +282,12 @@
 			isa = PBXGroup;
 			children = (
 				11D3904425AB3F230014B3B1 /* AppDelegate.swift */,
-				11735ADA25B283E500C27FBB /* Router.swift */,
-				11735AE025B28AD600C27FBB /* ErrorType.swift */,
-				11B652FB25B164E900215FD4 /* InstagramResponse.swift */,
-				11B6532125B16AF000215FD4 /* Services */,
+				11009AEA25B3CDA600DC3940 /* Data */,
+				11009AD225B3CCC500DC3940 /* Domain */,
+				11009AD825B3CCE500DC3940 /* Router */,
+				11009ABE25B3CA5300DC3940 /* Model */,
+				11009ABB25B3CA4700DC3940 /* Entities */,
+				11009AB825B3CA3600DC3940 /* Settings */,
 				11735ABB25B1DDB700C27FBB /* Authorize */,
 				11D3908725AB51220014B3B1 /* Content */,
 				11B652F225B161BC00215FD4 /* Extensions */,
@@ -412,10 +518,14 @@
 			files = (
 				11D3909425AB56440014B3B1 /* UIColor + Extension.swift in Sources */,
 				11D3907725AB424D0014B3B1 /* ContentCollectionView.swift in Sources */,
+				11735B0D25B340C100C27FBB /* AppSettings.swift in Sources */,
 				11735AB825B1DD6B00C27FBB /* AuthorizeViewController.swift in Sources */,
+				11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */,
 				11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */,
+				11009AC825B3CC7900DC3940 /* TokenRepository.swift in Sources */,
 				11735ADB25B283E500C27FBB /* Router.swift in Sources */,
 				11735AC225B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift in Sources */,
+				11009ADC25B3CD4400DC3940 /* AuthorizeServiceResolver.swift in Sources */,
 				11D3908225AB50810014B3B1 /* ContentNavigationController.swift in Sources */,
 				11D390A025ABCE690014B3B1 /* ContentCollectionViewLayout.swift in Sources */,
 				11D3904F25AB3F230014B3B1 /* Incolletion.xcdatamodeld in Sources */,
@@ -426,6 +536,8 @@
 				11735A8625B1CCD400C27FBB /* AuthorizeService.swift in Sources */,
 				11D3904525AB3F230014B3B1 /* AppDelegate.swift in Sources */,
 				11735AE125B28AD600C27FBB /* ErrorType.swift in Sources */,
+				11009AC225B3CA7A00DC3940 /* DefaultTokenRepository.swift in Sources */,
+				11009AE225B3CD5A00DC3940 /* AuthorizeServiceStarter.swift in Sources */,
 				11B652F825B161E100215FD4 /* InstagramApi.swift in Sources */,
 				11B6529325AF419F00215FD4 /* CGRect + Extension.swift in Sources */,
 				11D3909825AB585A0014B3B1 /* ContentCollectionViewCell.swift in Sources */,
