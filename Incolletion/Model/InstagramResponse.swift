@@ -7,39 +7,39 @@
 
 import Foundation
 
-typealias InstagramTokenResult = Result<String, Error>
+typealias InstagramTokenResult = Result<InstagramToken, Error>
 
-struct InstagramTestUser: Codable {
+struct InstagramToken: Decodable {
   var accessToken: String
   var userId: Int
 }
 
-struct InstagramUser: Codable {
+struct InstagramUser: Decodable {
   var id: String
   var username: String
 }
 
-struct Feed: Codable {
+struct Feed: Decodable {
   var data: [MediaData]
   var paging: PagingData
 }
 
-struct MediaData: Codable {
+struct MediaData: Decodable {
   var id: String
   var caption: String?
 }
 
-struct PagingData: Codable {
+struct PagingData: Decodable {
   var cursors: CursorData
   var next: String
 }
 
-struct CursorData: Codable {
+struct CursorData: Decodable {
   var before: String
   var after: String
 }
 
-struct InstagramMedia: Codable {
+struct InstagramMedia: Decodable {
   var id: String
   var mediaType: MediaType
   var mediaUrl: String
@@ -47,7 +47,7 @@ struct InstagramMedia: Codable {
   var timestamp: String
 }
 
-enum MediaType: String, Codable {
+enum MediaType: String, Decodable {
   case IMAGE
   case VIDEO
   case CAROUSEL_ALBUM

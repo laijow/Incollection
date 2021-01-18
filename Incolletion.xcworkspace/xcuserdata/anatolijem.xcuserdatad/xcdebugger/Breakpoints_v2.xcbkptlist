@@ -39,16 +39,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "94E56F9C-9C1C-42B2-8404-8206318EDCCD"
+            uuid = "3142A8FC-E836-4529-97CF-FD7A24AF077A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Incolletion/Authorize/View/AuthorizeViewController.swift"
+            filePath = "Incolletion/Authorize/View/InstagramLoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "onAuthorizeResult(error:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "bindToModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6C4AFD5-DF62-4CE3-A2C2-06C5098EEE15"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Incolletion/Data/Service/NetworkDataFetcher.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "decodeJSON(type:from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

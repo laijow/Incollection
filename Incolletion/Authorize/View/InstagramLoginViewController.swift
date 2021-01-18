@@ -21,7 +21,7 @@ class InstagramLoginViewController: UIViewController {
     
     // Rx
     private let disposeBag = DisposeBag()
-    private let relayAuthorized = PublishRelay<String>()
+    private let relayGetToken = PublishRelay<String>()
     private let relayEndFinish = PublishRelay<InstagramTokenResult>()
     
     init(authUrl: URL, viewModel: InstagramLoginViewControllerViewModel) {
@@ -77,7 +77,7 @@ class InstagramLoginViewController: UIViewController {
 extension InstagramLoginViewController {
     
     private func bindToModel() {
-        let input = InstagramLoginViewControllerViewModel.Input(authorized: relayAuthorized.asSignal(),
+        let input = InstagramLoginViewControllerViewModel.Input(getToken: relayGetToken.asSignal(),
                                                                 endFinish: relayEndFinish.asSignal())
         let output = viewModel.transform(from: input)
         
@@ -207,7 +207,7 @@ extension InstagramLoginViewController: WKNavigationDelegate {
 
         decisionHandler(.cancel)
 
-        relayAuthorized.accept(stringURL)
+        relayGetToken.accept(stringURL)
     }
 
     func webView(_ webView: WKWebView,

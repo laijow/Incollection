@@ -13,10 +13,13 @@ import RxCocoa
 class InstagramLoginViewControllerViewModel {
     
     private let authorizeService: AuthorizeServiceResolver
+    private let fetcher: InstagramDataFetcher
+    
     private let relayBeginFinish = PublishRelay<InstagramTokenResult>()
     
-    init(authorizeService: AuthorizeServiceResolver) {
+    init(authorizeService: AuthorizeServiceResolver, fetcher: InstagramDataFetcher = DataFetcherService()) {
         self.authorizeService = authorizeService
+        self.fetcher = fetcher
     }
     
     func authorizeFinished(stringURL: String) -> Bool {
@@ -31,7 +34,7 @@ class InstagramLoginViewControllerViewModel {
 extension InstagramLoginViewControllerViewModel: ViewModel {
     
     struct Input {
-        let authorized: Signal<String>
+        let getToken: Signal<String>
         let endFinish: Signal<InstagramTokenResult>
     }
     
@@ -41,10 +44,14 @@ extension InstagramLoginViewControllerViewModel: ViewModel {
     }
     
     func transform(from input: Input) -> Output {
-        let autorized = input.authorized.map { [weak self] result -> InstagramTokenResult in
-            guard let _ = self, let range = result.range(of: "?code=") else { return .failure(ErrorType.InvalidObject) }
-            let accessToken = String(result[range.upperBound...])
-            return .success(accessToken)
+        let getToken = input.getToken.flatMap { [weak self] result -> Signal<InstagramTokenResult> in
+            let defaultError = InstagramTokenResult.failure(ErrorType.InvalidObject)
+            guard let _ = self, let range = result.range(of: "?code=") else { return Signal.just(defaultError) }
+            
+            let code = String(result[range.upperBound...])
+            
+            guard let self = self else { return Signal.just(defaultError) }
+            return self.fetcher.fetchInstagramToken(with: code).asSignal(onErrorJustReturn: defaultError)
         }
         let endFinish = input.endFinish.map { [weak self] result -> Bool in
             guard let self = self else { return false }
@@ -52,7 +59,7 @@ extension InstagramLoginViewControllerViewModel: ViewModel {
             return true
         }.asDriver(onErrorJustReturn: false)
         
-        let beginFinish = Signal.merge(autorized, relayBeginFinish.asSignal())
+        let beginFinish = Signal.merge(getToken, relayBeginFinish.asSignal())
             .asDriver { Driver.just(.failure($0)) }
         return Output(beginFinish: beginFinish, endFinish: endFinish)
     }

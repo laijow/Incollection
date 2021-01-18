@@ -24,6 +24,7 @@ class InstagramApi {
     static let redirectURI = "https://www.google.com/"
     static let boundary = "boundary=\(NSUUID().uuidString)"
     static let scope = "user_profile,user_media"
+    static let grantType = "authorization_code"
     
     static func getStringURL(_ method: InstagramApiMethod) -> String {
         switch method {

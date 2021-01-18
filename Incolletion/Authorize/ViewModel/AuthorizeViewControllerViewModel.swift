@@ -28,8 +28,8 @@ class AuthorizeViewControllerViewModel {
             .take(1)
             .subscribe(onNext: { [weak self] result in
                 switch result {
-                case .success(let accessToken) :
-                    self?.onAuthorizeResult(accessToken, nil)
+                case .success( _) : break
+//                    self?.onAuthorizeResult(accessToken, nil)
                 case .failure(let error) :
                     self?.onAuthorizeResult(nil, error)
                 }
