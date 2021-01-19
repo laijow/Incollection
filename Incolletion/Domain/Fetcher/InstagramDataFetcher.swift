@@ -10,5 +10,5 @@ import RxSwift
 
 protocol InstagramDataFetcher {
     func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult>
+    func fetchInstagramUser(with token: InstagramToken) -> Observable<InstagramUserResult>
 }
-    

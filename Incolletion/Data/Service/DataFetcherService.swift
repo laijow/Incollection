@@ -16,8 +16,8 @@ class DataFetcherService {
         self.networkDataFetcher = networkDataFetcher
     }
     
-    private func buildURL(method: InstagramApiMethod, components: [String: String]) -> URL {
-        var component = URLComponents(string: InstagramApi.getStringURL(method))!
+    private func buildGETMethodURL(components: [String: String], defaultStringURL: String) -> URL {
+        var component = URLComponents(string: defaultStringURL)!
         
         component.queryItems = components.map { return URLQueryItem(name: $0, value: $1) }
         return component.url!
@@ -27,19 +27,40 @@ class DataFetcherService {
 extension DataFetcherService: InstagramDataFetcher {
        
     func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult> {
-        let components = [
+        let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
+        let parameters = [
             "client_id": InstagramApi.instagramAppID,
             "client_secret": InstagramApi.app_secret,
-            "code": code,
+            "code": toCleanCode,
             "grant_type": InstagramApi.grantType,
             "redirect_uri": InstagramApi.redirectURI
         ]
-        let url = buildURL(method: .access_token, components: components)
-        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramToken.self, method: .POST).map { result -> InstagramTokenResult in
+        let url = URL(string: InstagramApi.getAuthStringURL(.access_token))!
+        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramToken.self, method: .POST, parameters: parameters).map { result -> InstagramTokenResult in
             if result.isSuccess {
                 return .success(result.getResult()!)
             }
             return .failure(result.getError()!)
+        }
+    }
+    
+    func fetchInstagramUser(with token: InstagramToken) -> Observable<InstagramUserResult> {
+        let defaultStringURL = InstagramApi.grathURL + "\(token.userId)"
+        let components = [
+            "fields" : "id,username",
+            "access_token" : token.accessToken
+        ]
+        
+        let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
+        return networkDataFetcher.fetchGenericJSONData(url: url,
+                                                       type: InstagramUser.self,
+                                                       method: .GET,
+                                                       parameters: nil).map { result -> InstagramUserResult in
+                                                        if result.isSuccess {
+                                                        return .success(result.getResult()!)
+                                                        }
+
+                                                        return .failure(result.getError()!)
         }
     }
 }

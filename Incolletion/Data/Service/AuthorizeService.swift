@@ -28,7 +28,7 @@ class AuthorizeService {
     }
     
     private func buildAuthURL() -> URL {
-        var components = URLComponents(string: InstagramApi.getStringURL(.authorize))!
+        var components = URLComponents(string: InstagramApi.getAuthStringURL(.authorize))!
         
         components.queryItems = [
             URLQueryItem(name: "client_id", value: InstagramApi.instagramAppID),

@@ -8,15 +8,24 @@
 import Foundation
 
 typealias InstagramTokenResult = Result<InstagramToken, Error>
+typealias InstagramUserResult = Result<InstagramUser, Error>
 
 struct InstagramToken: Decodable {
-  var accessToken: String
-  var userId: Int
+    private enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case userId = "user_id"
+    }
+    var accessToken: String
+    var userId: Int
 }
 
 struct InstagramUser: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case userName = "username"
+    }
   var id: String
-  var username: String
+  var userName: String
 }
 
 struct Feed: Decodable {

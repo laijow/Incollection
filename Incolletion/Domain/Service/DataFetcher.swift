@@ -13,5 +13,6 @@ typealias FetchResult<T> = Result<T, Error>
 protocol DataFetcher {
     func fetchGenericJSONData<T: Decodable>(url: URL,
                                             type: T.Type,
-                                            method: NetworkMethod) -> Observable<FetchResult<T>>
+                                            method: NetworkMethod,
+                                            parameters: [String: String]?) -> Observable<FetchResult<T>>
 }

@@ -18,8 +18,9 @@ class NetworkDataFetcher: DataFetcher {
     
     func fetchGenericJSONData<T: Decodable>(url: URL,
                                             type: T.Type,
-                                            method: NetworkMethod) -> Observable<FetchResult<T>> {
-        return networking.request(url: url, method: method).map { [weak self] result -> FetchResult<T> in
+                                            method: NetworkMethod,
+                                            parameters: [String: String]?) -> Observable<FetchResult<T>> {
+        return networking.request(url: url, method: method, parameters: parameters).map { [weak self] result -> FetchResult<T> in
             guard let self = self else { return .failure(ErrorType.InvalidObject) }
             let decoded = self.decodeJSON(type: type.self, from: result)
             
@@ -31,6 +32,8 @@ class NetworkDataFetcher: DataFetcher {
         let decoder = JSONDecoder()
         guard let data = from else { return .failure(ErrorType.InvalidObject) }
         do {
+            let obj = try JSONSerialization.jsonObject(with: data, options: [])
+            print(obj)
             let objects = try decoder.decode(type.self, from: data)
             return .success(objects)
         } catch let jsonError {

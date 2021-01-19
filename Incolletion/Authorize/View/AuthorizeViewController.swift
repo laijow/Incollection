@@ -45,12 +45,15 @@ class AuthorizeViewController: UIViewController {
 }
 
 extension AuthorizeViewController: AuthorizeViewControllerViewModelDelegate {
-    func onAuthorizeResult(error: Error?) {
+    
+    func onAuthorizeResult(token: InstagramToken?, error: Error?) {
         if let error = error {
             print(error.localizedDescription)
             return
         }
         
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: true, completion: {
+            
+        })
     }
 }

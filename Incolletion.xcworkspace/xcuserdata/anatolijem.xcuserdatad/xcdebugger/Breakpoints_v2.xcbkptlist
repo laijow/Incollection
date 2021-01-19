@@ -55,15 +55,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F6C4AFD5-DF62-4CE3-A2C2-06C5098EEE15"
+            uuid = "0B6BBE4C-FCBB-4DA4-BABF-B98D497B161F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Incolletion/Data/Service/NetworkDataFetcher.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "decodeJSON(type:from:)"
             landmarkType = "7">
          </BreakpointContent>

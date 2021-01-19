@@ -15,5 +15,5 @@ enum NetworkMethod: String {
 }
 
 protocol Networking {
-    func request(url: URL, method: NetworkMethod) -> Observable<Data>
+    func request(url: URL, method: NetworkMethod, parameters: [String: String]?) -> Observable<Data>
 }

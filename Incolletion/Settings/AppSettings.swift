@@ -12,6 +12,7 @@ public enum AppSettings {
     public enum key: String {
             case isLoggedIn = "isLoggedIn"
             case accessToken = "accessToken"
+            case userId = "userId"
     }
 
     public static subscript(_ key: key) -> Any? {
