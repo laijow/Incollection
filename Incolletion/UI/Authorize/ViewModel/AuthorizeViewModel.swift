@@ -9,23 +9,25 @@ import Foundation
 import RxSwift
 
 protocol AuthorizeViewControllerViewModelDelegate: NSObject {
-    func onAuthorizeResult(token: InstagramToken?, error: Error?)
+    func onAuthorizeResult(error: Error?)
 }
 
-class AuthorizeViewControllerViewModel {
-    
-    let authorizeService: AuthorizeServiceStarter
+class AuthorizeViewModel {
     
     weak var delegate: AuthorizeViewControllerViewModelDelegate?
     
+    private var token: InstagramToken?
+    
+    private let router: Router
     private var disposeBag = DisposeBag()
     
-    init(authorizeService: AuthorizeServiceStarter) {
-        self.authorizeService = authorizeService
+    init(router: Router) {
+        self.router = router
     }
     
-    func showInstagramLoginViewController() {
-        self.authorizeService.start()
+    func startOfInstagramAuthorization() {
+        let authorizeService = AuthorizeService(router: router)
+        authorizeService.start()
             .take(1)
             .subscribe(onNext: { [weak self] result in
                 switch result {
@@ -37,12 +39,20 @@ class AuthorizeViewControllerViewModel {
             }).disposed(by: disposeBag)
     }
     
+    func declareLoadingViewController() {
+        let loadingDataVC = LoadingDataViewController(viewModel: LoadingDataViewModel(token: token, router: router))
+        
+        router.changeRootViewController(with: loadingDataVC)
+    }
+    
     private func onAuthorizeResult(_ token: InstagramToken?, _ error: Error?) {
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.token = token
             AppSettings[.accessToken] = token?.accessToken
             AppSettings[.userId] = token?.userId
             AppSettings[.isLoggedIn] = true
-            self?.delegate?.onAuthorizeResult(token: token, error: error)
+            self.delegate?.onAuthorizeResult(error: error)
         }
     }
     

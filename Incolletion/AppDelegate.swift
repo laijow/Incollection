@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         window = UIWindow()
-        let authorizeService = AuthorizeService()
-        let authVC: AuthorizeViewController = AuthorizeViewController(viewModel: AuthorizeViewControllerViewModel(authorizeService: authorizeService))
+        let loadingDataVC = LoadingDataViewController(viewModel: LoadingDataViewModel(token: nil, router: DefaultRouter()))
+        let authVC: AuthorizeViewController = AuthorizeViewController(viewModel: AuthorizeViewModel(router: DefaultRouter()))
         
-        window?.rootViewController = authVC
+        window?.rootViewController = loadingDataVC//authVC
         window?.makeKeyAndVisible()
         
         return true

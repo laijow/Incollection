@@ -10,7 +10,10 @@ import UIKit
 
 class ContentNavigationController: UINavigationController {
     
-    init() {
+    private let user: InstagramUser?
+    
+    init(user: InstagramUser?) {
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     

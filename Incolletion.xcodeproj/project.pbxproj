@@ -10,14 +10,19 @@
 		11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009ACB25B3CC9B00DC3940 /* DefaultRouter.swift */; };
 		11009ADC25B3CD4400DC3940 /* AuthorizeServiceResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */; };
 		11009AE225B3CD5A00DC3940 /* AuthorizeServiceStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */; };
+		113B5E6025BBCD880081B461 /* LocalDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B5E5F25BBCD880081B461 /* LocalDataFetcher.swift */; };
+		113B5E6425BBCDE90081B461 /* DefaultLocalDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B5E6325BBCDE90081B461 /* DefaultLocalDataFetcher.swift */; };
+		113B5E7925BBD5C00081B461 /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B5E7825BBD5C00081B461 /* LocalDataManager.swift */; };
+		113B5E8725BBD6D90081B461 /* DefaultLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B5E8625BBD6D90081B461 /* DefaultLocalDataManager.swift */; };
+		113B5E8B25BBDAA90081B461 /* ContentNavigationControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B5E8A25BBDAA90081B461 /* ContentNavigationControllerViewModel.swift */; };
 		11735A8625B1CCD400C27FBB /* AuthorizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735A8525B1CCD400C27FBB /* AuthorizeService.swift */; };
 		11735A8E25B1D11900C27FBB /* InstagramLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735A8D25B1D11900C27FBB /* InstagramLoginViewController.swift */; };
 		11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AAA25B1D95800C27FBB /* ContentViewControllerViewModel.swift */; };
 		11735AB825B1DD6B00C27FBB /* AuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AB725B1DD6B00C27FBB /* AuthorizeViewController.swift */; };
-		11735AC225B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AC125B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift */; };
+		11735AC225B1E0A300C27FBB /* AuthorizeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AC125B1E0A300C27FBB /* AuthorizeViewModel.swift */; };
 		11735ADB25B283E500C27FBB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735ADA25B283E500C27FBB /* Router.swift */; };
 		11735AE125B28AD600C27FBB /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AE025B28AD600C27FBB /* ErrorType.swift */; };
-		11735AF125B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AF025B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift */; };
+		11735AF125B2CDAC00C27FBB /* InstagramLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AF025B2CDAC00C27FBB /* InstagramLoginViewModel.swift */; };
 		11735AF925B2D1A500C27FBB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735AF825B2D1A500C27FBB /* ViewModel.swift */; };
 		11735B0D25B340C100C27FBB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11735B0C25B340C100C27FBB /* AppSettings.swift */; };
 		11930BEC25B3F6060099E7FD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11930BEB25B3F6060099E7FD /* Networking.swift */; };
@@ -25,6 +30,8 @@
 		11930BFB25B3F7110099E7FD /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11930BFA25B3F7110099E7FD /* DataFetcher.swift */; };
 		11930C0425B3F7470099E7FD /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11930C0325B3F7470099E7FD /* NetworkDataFetcher.swift */; };
 		11930C0C25B3F90E0099E7FD /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11930C0B25B3F90E0099E7FD /* DataFetcherService.swift */; };
+		11A6968225B7DC0F00976AF4 /* LoadingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6968125B7DC0F00976AF4 /* LoadingDataViewController.swift */; };
+		11A6969025B7E58900976AF4 /* LoadingDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A6968F25B7E58900976AF4 /* LoadingDataViewModel.swift */; };
 		11B6529325AF419F00215FD4 /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6529225AF419F00215FD4 /* CGRect+Extension.swift */; };
 		11B652F825B161E100215FD4 /* InstagramApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B652F725B161E100215FD4 /* InstagramApi.swift */; };
 		11B652FC25B164E900215FD4 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B652FB25B164E900215FD4 /* InstagramResponse.swift */; };
@@ -61,14 +68,19 @@
 		11009ACB25B3CC9B00DC3940 /* DefaultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRouter.swift; sourceTree = "<group>"; };
 		11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceResolver.swift; sourceTree = "<group>"; };
 		11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceStarter.swift; sourceTree = "<group>"; };
+		113B5E5F25BBCD880081B461 /* LocalDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataFetcher.swift; sourceTree = "<group>"; };
+		113B5E6325BBCDE90081B461 /* DefaultLocalDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocalDataFetcher.swift; sourceTree = "<group>"; };
+		113B5E7825BBD5C00081B461 /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		113B5E8625BBD6D90081B461 /* DefaultLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocalDataManager.swift; sourceTree = "<group>"; };
+		113B5E8A25BBDAA90081B461 /* ContentNavigationControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNavigationControllerViewModel.swift; sourceTree = "<group>"; };
 		11735A8525B1CCD400C27FBB /* AuthorizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeService.swift; sourceTree = "<group>"; };
 		11735A8D25B1D11900C27FBB /* InstagramLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLoginViewController.swift; sourceTree = "<group>"; };
 		11735AAA25B1D95800C27FBB /* ContentViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewControllerViewModel.swift; sourceTree = "<group>"; };
 		11735AB725B1DD6B00C27FBB /* AuthorizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeViewController.swift; sourceTree = "<group>"; };
-		11735AC125B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeViewControllerViewModel.swift; sourceTree = "<group>"; };
+		11735AC125B1E0A300C27FBB /* AuthorizeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeViewModel.swift; sourceTree = "<group>"; };
 		11735ADA25B283E500C27FBB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		11735AE025B28AD600C27FBB /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
-		11735AF025B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLoginViewControllerViewModel.swift; sourceTree = "<group>"; };
+		11735AF025B2CDAC00C27FBB /* InstagramLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramLoginViewModel.swift; sourceTree = "<group>"; };
 		11735AF825B2D1A500C27FBB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		11735B0C25B340C100C27FBB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		11930BEB25B3F6060099E7FD /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -76,6 +88,8 @@
 		11930BFA25B3F7110099E7FD /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		11930C0325B3F7470099E7FD /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		11930C0B25B3F90E0099E7FD /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
+		11A6968125B7DC0F00976AF4 /* LoadingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDataViewController.swift; sourceTree = "<group>"; };
+		11A6968F25B7E58900976AF4 /* LoadingDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDataViewModel.swift; sourceTree = "<group>"; };
 		11B6529225AF419F00215FD4 /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		11B652F725B161E100215FD4 /* InstagramApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramApi.swift; sourceTree = "<group>"; };
 		11B652FB25B164E900215FD4 /* InstagramResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramResponse.swift; sourceTree = "<group>"; };
@@ -157,6 +171,7 @@
 		11009AD225B3CCC500DC3940 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				113B5E8525BBD6C00081B461 /* Manager */,
 				11009AB525B3CA1800DC3940 /* Router */,
 				11009AE525B3CD6600DC3940 /* Service */,
 				11F80C2125B55BCD008AAAEE /* Fetcher */,
@@ -175,10 +190,8 @@
 		11009AE525B3CD6600DC3940 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				11930BFA25B3F7110099E7FD /* DataFetcher.swift */,
-				11930BEB25B3F6060099E7FD /* Networking.swift */,
-				11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */,
-				11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */,
+				113B5E5925BBC6110081B461 /* Local */,
+				113B5E5C25BBC6180081B461 /* Network */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -186,6 +199,7 @@
 		11009AEA25B3CDA600DC3940 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				11009ABE25B3CA5300DC3940 /* Model */,
 				11009AEF25B3CDC000DC3940 /* API */,
 				11B6532125B16AF000215FD4 /* Service */,
 			);
@@ -200,10 +214,76 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		113B5E4425BBA85E0081B461 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				11735A8525B1CCD400C27FBB /* AuthorizeService.swift */,
+				11930C0B25B3F90E0099E7FD /* DataFetcherService.swift */,
+				11930BF625B3F67A0099E7FD /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		113B5E5925BBC6110081B461 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				113B5E5F25BBCD880081B461 /* LocalDataFetcher.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		113B5E5C25BBC6180081B461 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				11930BFA25B3F7110099E7FD /* DataFetcher.swift */,
+				11930BEB25B3F6060099E7FD /* Networking.swift */,
+				11009ADB25B3CD4400DC3940 /* AuthorizeServiceResolver.swift */,
+				11009AE125B3CD5A00DC3940 /* AuthorizeServiceStarter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		113B5E6D25BBD2ED0081B461 /* Fetcher */ = {
+			isa = PBXGroup;
+			children = (
+				11930C0325B3F7470099E7FD /* NetworkDataFetcher.swift */,
+				113B5E6325BBCDE90081B461 /* DefaultLocalDataFetcher.swift */,
+			);
+			path = Fetcher;
+			sourceTree = "<group>";
+		};
+		113B5E7525BBD3320081B461 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				11735ABB25B1DDB700C27FBB /* Authorize */,
+				11D3908725AB51220014B3B1 /* Content */,
+				11A6968525B7E50D00976AF4 /* Loading */,
+				11009AD825B3CCE500DC3940 /* Router */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		113B5E7C25BBD5C30081B461 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				113B5E8625BBD6D90081B461 /* DefaultLocalDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		113B5E8525BBD6C00081B461 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				113B5E7825BBD5C00081B461 /* LocalDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		11735AAE25B1DAC700C27FBB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				11735AAA25B1D95800C27FBB /* ContentViewControllerViewModel.swift */,
+				113B5E8A25BBDAA90081B461 /* ContentNavigationControllerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -230,8 +310,33 @@
 			isa = PBXGroup;
 			children = (
 				11735AF825B2D1A500C27FBB /* ViewModel.swift */,
-				11735AC125B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift */,
-				11735AF025B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift */,
+				11735AC125B1E0A300C27FBB /* AuthorizeViewModel.swift */,
+				11735AF025B2CDAC00C27FBB /* InstagramLoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		11A6968525B7E50D00976AF4 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				11A6968C25B7E57A00976AF4 /* View */,
+				11A6969325B7E58D00976AF4 /* ViewModel */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		11A6968C25B7E57A00976AF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11A6968125B7DC0F00976AF4 /* LoadingDataViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11A6969325B7E58D00976AF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				11A6968F25B7E58900976AF4 /* LoadingDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -249,10 +354,8 @@
 		11B6532125B16AF000215FD4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				11735A8525B1CCD400C27FBB /* AuthorizeService.swift */,
-				11930C0B25B3F90E0099E7FD /* DataFetcherService.swift */,
-				11930BF625B3F67A0099E7FD /* NetworkService.swift */,
-				11930C0325B3F7470099E7FD /* NetworkDataFetcher.swift */,
+				113B5E4425BBA85E0081B461 /* Network */,
+				113B5E6D25BBD2ED0081B461 /* Fetcher */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -283,12 +386,10 @@
 				11D3904425AB3F230014B3B1 /* AppDelegate.swift */,
 				11009AEA25B3CDA600DC3940 /* Data */,
 				11009AD225B3CCC500DC3940 /* Domain */,
-				11009AD825B3CCE500DC3940 /* Router */,
-				11009ABE25B3CA5300DC3940 /* Model */,
 				11009ABB25B3CA4700DC3940 /* Entities */,
 				11009AB825B3CA3600DC3940 /* Settings */,
-				11735ABB25B1DDB700C27FBB /* Authorize */,
-				11D3908725AB51220014B3B1 /* Content */,
+				113B5E7C25BBD5C30081B461 /* Manager */,
+				113B5E7525BBD3320081B461 /* UI */,
 				11B652F225B161BC00215FD4 /* Extensions */,
 				11D3905025AB3F240014B3B1 /* Assets.xcassets */,
 				11D3905225AB3F240014B3B1 /* LaunchScreen.storyboard */,
@@ -525,13 +626,15 @@
 			files = (
 				11D3909425AB56440014B3B1 /* UIColor+Extension.swift in Sources */,
 				11D3907725AB424D0014B3B1 /* ContentCollectionView.swift in Sources */,
+				113B5E6425BBCDE90081B461 /* DefaultLocalDataFetcher.swift in Sources */,
 				11735B0D25B340C100C27FBB /* AppSettings.swift in Sources */,
 				11735AB825B1DD6B00C27FBB /* AuthorizeViewController.swift in Sources */,
 				11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */,
 				11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */,
+				113B5E6025BBCD880081B461 /* LocalDataFetcher.swift in Sources */,
 				11930BF725B3F67A0099E7FD /* NetworkService.swift in Sources */,
 				11735ADB25B283E500C27FBB /* Router.swift in Sources */,
-				11735AC225B1E0A300C27FBB /* AuthorizeViewControllerViewModel.swift in Sources */,
+				11735AC225B1E0A300C27FBB /* AuthorizeViewModel.swift in Sources */,
 				11009ADC25B3CD4400DC3940 /* AuthorizeServiceResolver.swift in Sources */,
 				11D3908225AB50810014B3B1 /* ContentNavigationController.swift in Sources */,
 				11F80C1E25B55BC5008AAAEE /* InstagramDataFetcher.swift in Sources */,
@@ -539,21 +642,26 @@
 				11D3904F25AB3F230014B3B1 /* Incolletion.xcdatamodeld in Sources */,
 				11735A8E25B1D11900C27FBB /* InstagramLoginViewController.swift in Sources */,
 				11735AF925B2D1A500C27FBB /* ViewModel.swift in Sources */,
+				11A6968225B7DC0F00976AF4 /* LoadingDataViewController.swift in Sources */,
 				11D3904925AB3F230014B3B1 /* ContentViewController.swift in Sources */,
-				11735AF125B2CDAC00C27FBB /* InstagramLoginViewControllerViewModel.swift in Sources */,
+				11735AF125B2CDAC00C27FBB /* InstagramLoginViewModel.swift in Sources */,
 				11735A8625B1CCD400C27FBB /* AuthorizeService.swift in Sources */,
+				113B5E8B25BBDAA90081B461 /* ContentNavigationControllerViewModel.swift in Sources */,
 				11D3904525AB3F230014B3B1 /* AppDelegate.swift in Sources */,
 				11930C0C25B3F90E0099E7FD /* DataFetcherService.swift in Sources */,
 				11735AE125B28AD600C27FBB /* ErrorType.swift in Sources */,
 				11009AE225B3CD5A00DC3940 /* AuthorizeServiceStarter.swift in Sources */,
 				11F80BEA25B50F21008AAAEE /* Result+Extension.swift in Sources */,
+				11A6969025B7E58900976AF4 /* LoadingDataViewModel.swift in Sources */,
 				11930BFB25B3F7110099E7FD /* DataFetcher.swift in Sources */,
+				113B5E7925BBD5C00081B461 /* LocalDataManager.swift in Sources */,
 				11930C0425B3F7470099E7FD /* NetworkDataFetcher.swift in Sources */,
 				11B652F825B161E100215FD4 /* InstagramApi.swift in Sources */,
 				11930BEC25B3F6060099E7FD /* Networking.swift in Sources */,
 				11B6529325AF419F00215FD4 /* CGRect+Extension.swift in Sources */,
 				11D3909825AB585A0014B3B1 /* ContentCollectionViewCell.swift in Sources */,
 				11B652FC25B164E900215FD4 /* InstagramResponse.swift in Sources */,
+				113B5E8725BBD6D90081B461 /* DefaultLocalDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

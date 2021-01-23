@@ -16,7 +16,7 @@ class InstagramLoginViewController: UIViewController {
     private var progressView: UIProgressView!
     private var webViewObservation: NSKeyValueObservation!
     
-    private let viewModel: InstagramLoginViewControllerViewModel
+    private let viewModel: InstagramLoginViewModel
     private let authURL: URL
     
     // Rx
@@ -24,7 +24,7 @@ class InstagramLoginViewController: UIViewController {
     private let relayGetToken = PublishRelay<String>()
     private let relayEndFinish = PublishRelay<InstagramTokenResult>()
     
-    init(authUrl: URL, viewModel: InstagramLoginViewControllerViewModel) {
+    init(authUrl: URL, viewModel: InstagramLoginViewModel) {
         self.authURL = authUrl
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -77,7 +77,7 @@ class InstagramLoginViewController: UIViewController {
 extension InstagramLoginViewController {
     
     private func bindToModel() {
-        let input = InstagramLoginViewControllerViewModel.Input(getToken: relayGetToken.asSignal(),
+        let input = InstagramLoginViewModel.Input(getToken: relayGetToken.asSignal(),
                                                                 endFinish: relayEndFinish.asSignal())
         let output = viewModel.transform(from: input)
         

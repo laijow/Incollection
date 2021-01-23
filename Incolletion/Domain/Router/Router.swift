@@ -10,6 +10,7 @@ import UIKit
 
 protocol Router: class {
     func presentAuthorization(authUrl: URL, authorizeService: AuthorizeServiceResolver?)
+    func changeRootViewController(with viewController: UIViewController)
 }
 
 

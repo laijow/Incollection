@@ -14,7 +14,7 @@ class AuthorizeService {
     private let router: Router
     private let resolved = PublishSubject<InstagramTokenResult>()
     
-    init(router: Router = DefaultRouter()) {
+    init(router: Router) {
         self.router = router
     }
         

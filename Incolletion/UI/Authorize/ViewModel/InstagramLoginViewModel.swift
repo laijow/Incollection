@@ -10,7 +10,7 @@ import WebKit
 import RxSwift
 import RxCocoa
 
-class InstagramLoginViewControllerViewModel {
+class InstagramLoginViewModel {
     
     private let authorizeService: AuthorizeServiceResolver
     private let fetcher: InstagramDataFetcher
@@ -31,7 +31,7 @@ class InstagramLoginViewControllerViewModel {
     }
 }
 
-extension InstagramLoginViewControllerViewModel: ViewModel {
+extension InstagramLoginViewModel: ViewModel {
     
     struct Input {
         let getToken: Signal<String>
