@@ -16,6 +16,7 @@ class LoadingDataViewController: UIViewController {
     init(viewModel: LoadingDataViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +35,13 @@ class LoadingDataViewController: UIViewController {
         viewModel.loadingData()
     }
     
+}
+
+extension LoadingDataViewController: LoadingDataViewModelDelegate {
+    
+    func loadingDataDidFinished() {
+        preloaderView.stopAnimating()
+    }
 }
 
 // Setup preloader view

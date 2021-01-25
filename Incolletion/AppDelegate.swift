@@ -19,10 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         window = UIWindow()
-        let loadingDataVC = LoadingDataViewController(viewModel: LoadingDataViewModel(token: nil, router: DefaultRouter()))
-        let authVC: AuthorizeViewController = AuthorizeViewController(viewModel: AuthorizeViewModel(router: DefaultRouter()))
         
-        window?.rootViewController = loadingDataVC//authVC
+        AppSettings[.isLoggedIn] = false
+        AppSettings[.accessToken] = nil
+        AppSettings[.userId] = nil
+        
+        let rootViewController: UIViewController
+        let router = DefaultRouter()
+        if AppSettings.boolValue(.isLoggedIn) {
+            let token = InstagramToken(accessToken: AppSettings.stringValue(.accessToken)!, userId: AppSettings.intValue(.userId)!)
+            rootViewController = LoadingDataViewController(viewModel: LoadingDataViewModel(token: token, router: router))
+        } else {
+            rootViewController = AuthorizeViewController(viewModel: AuthorizeViewModel(router: router))
+        }
+        
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
         return true

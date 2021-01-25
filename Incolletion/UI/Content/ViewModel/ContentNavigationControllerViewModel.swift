@@ -6,14 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 class ContentNavigationControllerViewModel {
     
     private var users: [User]?
+    private let user: InstagramUser?
     
-    private let fetcher: LocalDataFetcher
+    private var fetcher: LocalDataFetcher!
     
-    init(fetcher: LocalDataFetcher) {
-        self.fetcher = fetcher
+    init(user: InstagramUser? = nil) {
+        self.user = user
+    }
+    
+    func selectedUserName() -> String? {
+        guard let user = self.user else { return nil }
+        return user.userName
     }
 }

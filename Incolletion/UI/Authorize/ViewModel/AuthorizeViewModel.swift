@@ -16,7 +16,7 @@ class AuthorizeViewModel {
     
     weak var delegate: AuthorizeViewControllerViewModelDelegate?
     
-    private var token: InstagramToken?
+    private(set) var token: InstagramToken?
     
     private let router: Router
     private var disposeBag = DisposeBag()
