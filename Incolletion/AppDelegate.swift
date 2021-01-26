@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        AppSettings[.isLoggedIn] = false
-        AppSettings[.accessToken] = nil
-        AppSettings[.userId] = nil
+//        AppSettings[.isLoggedIn] = false
+//        AppSettings[.accessToken] = nil
+//        AppSettings[.userId] = nil
         
         let rootViewController: UIViewController
         let router = DefaultRouter()

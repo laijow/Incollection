@@ -47,6 +47,9 @@ extension ContentCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: ContentCollectionViewCell.reuseId, for: indexPath) as! ContentCollectionViewCell
+        cell.viewModel = self.viewModel?.cellForItemAt(indexPath)
+        cell.viewModel?.delegate = cell as? ContentCollectionViewCellViewModelDelegate
+        cell.viewModel?.fetchMedia()
         return cell
     }
 }

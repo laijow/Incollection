@@ -44,7 +44,7 @@ class ContentViewControllerViewModel {
     }
     
     func getCollectionViewViewModel() -> ContentCollectionViewViewModel {
-        return ContentCollectionViewViewModel(medias: user?.media.data, fetcher: fetcher)
+        return ContentCollectionViewViewModel(medias: user?.media.data, fetcher: fetcher, token: token)
     }
     
     private func loadingFinished(user: InstagramUser) {

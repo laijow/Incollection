@@ -26,8 +26,6 @@ class DataFetcherService {
 
 extension DataFetcherService: InstagramDataFetcher {
     
-    
-       
     func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult> {
         let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
         let parameters = [
@@ -66,7 +64,25 @@ extension DataFetcherService: InstagramDataFetcher {
         }
     }
     
-//    func fetchInstagramMedia(with token: InstagramToken) -> Observable<InstagramMediaResult> {
-//        
-//    }
+    func fetchInstagramMedia(with token: InstagramToken, mediaId: String) -> Observable<InstagramMediaResult> {
+        let defaultStringURL = InstagramApi.grathURL + "\(mediaId)"
+        let components = [
+            "fields" : "caption,id,media_type,media_url,permalink,timestamp,username",
+            "access_token" : token.accessToken
+        ]
+        
+        let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
+        
+        return networkDataFetcher.fetchGenericJSONData(url: url,
+                                                       type: InstagramMedia.self,
+                                                       method: .GET,
+                                                       parameters: nil).map { result -> InstagramMediaResult in
+                                                        if result.isSuccess {
+                                                            return .success(result.getResult()!)
+                                                        }
+                                                        
+                                                        return.failure(result.getError()!)
+            
+        }
+    }
 }

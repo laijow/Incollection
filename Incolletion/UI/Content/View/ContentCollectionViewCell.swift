@@ -11,7 +11,8 @@ class ContentCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "ContentCollectionViewCell"
     
-    var viewModel: ContentCollectionViewCellViewModel!
+    var viewModel: ContentCollectionViewCellViewModel?
+    
     let myImageView: WebImageView = {
        let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +24,8 @@ class ContentCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .red
+        clipsToBounds = true
+        myImageView.frame = bounds
         addSubview(myImageView)
     }
     
@@ -39,4 +41,11 @@ class ContentCollectionViewCell: UICollectionViewCell {
         myImageView.image = nil
     }
     
+}
+
+extension ContentCollectionViewCell: ContentCollectionViewCellViewModelDelegate {
+    
+    func fetchMediaDidFinish(mediaUrl: String) {
+        myImageView.set(imageURL: mediaUrl)
+    }
 }
