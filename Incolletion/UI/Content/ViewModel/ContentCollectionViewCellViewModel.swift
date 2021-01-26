@@ -45,7 +45,8 @@ class ContentCollectionViewCellViewModel {
     
     private func fetchDidFinish(instagramMedia: InstagramMedia) {
         DispatchQueue.main.async {
-            self.delegate.fetchMediaDidFinish(mediaUrl: instagramMedia.mediaUrl)
+            let medialUrl = instagramMedia.mediaType == .VIDEO ? instagramMedia.thumbnailUrl : instagramMedia.mediaUrl
+            self.delegate.fetchMediaDidFinish(mediaUrl: medialUrl!)
         }
     }
 }

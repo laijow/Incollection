@@ -54,12 +54,14 @@ struct InstagramMedia: Decodable {
         case id
         case mediaType = "media_type"
         case mediaUrl = "media_url"
+        case thumbnailUrl = "thumbnail_url"
         case userName = "username"
         case timestamp
     }
     var id: String
     var mediaType: MediaType
     var mediaUrl: String
+    var thumbnailUrl: String?
     var userName: String
     var timestamp: String
 }

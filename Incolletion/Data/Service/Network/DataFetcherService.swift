@@ -67,7 +67,7 @@ extension DataFetcherService: InstagramDataFetcher {
     func fetchInstagramMedia(with token: InstagramToken, mediaId: String) -> Observable<InstagramMediaResult> {
         let defaultStringURL = InstagramApi.grathURL + "\(mediaId)"
         let components = [
-            "fields" : "caption,id,media_type,media_url,permalink,timestamp,username",
+            "fields" : "caption,id,media_type,media_url,permalink,timestamp,username,thumbnail_url",
             "access_token" : token.accessToken
         ]
         
