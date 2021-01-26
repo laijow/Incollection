@@ -25,6 +25,8 @@ class DataFetcherService {
 }
 
 extension DataFetcherService: InstagramDataFetcher {
+    
+    
        
     func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult> {
         let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
@@ -63,4 +65,8 @@ extension DataFetcherService: InstagramDataFetcher {
                                                         return .failure(result.getError()!)
         }
     }
+    
+//    func fetchInstagramMedia(with token: InstagramToken) -> Observable<InstagramMediaResult> {
+//        
+//    }
 }

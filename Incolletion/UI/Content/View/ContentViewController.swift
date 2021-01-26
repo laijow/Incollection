@@ -32,7 +32,6 @@ class ContentViewController: UIViewController {
     
     private func setupCollectionView() {
         collectionView = ContentCollectionView(frame: view.bounds)
-        collectionView.viewModel = self.viewModel.getCollectionViewViewModel()
         view.addSubview(collectionView)
     }
 }
@@ -43,6 +42,7 @@ extension ContentViewController: ContentViewControllerViewModelViewModel {
         if let title = title {
             self.title = title
         }
+        collectionView.viewModel = self.viewModel.getCollectionViewViewModel()
         
         self.collectionView.reloadData()
     }

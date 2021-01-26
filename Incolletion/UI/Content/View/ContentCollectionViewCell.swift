@@ -23,6 +23,7 @@ class ContentCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = .red
         addSubview(myImageView)
     }
     

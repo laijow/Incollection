@@ -10,7 +10,7 @@ import UIKit
 
 class ContentCollectionView: UICollectionView {
     
-    var viewModel: ContentCollectionViewViewModel!
+    var viewModel: ContentCollectionViewViewModel?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout = UICollectionViewLayout()) {
         let rowLayout = ContentCollectionViewLayout()
@@ -42,7 +42,7 @@ extension ContentCollectionView: UICollectionViewDelegate {
 extension ContentCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.numberOfItemsInSection(section)
+        return self.viewModel?.numberOfItemsInSection(section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
