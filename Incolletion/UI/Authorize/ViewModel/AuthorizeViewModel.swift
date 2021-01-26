@@ -40,9 +40,9 @@ class AuthorizeViewModel {
     }
     
     func declareLoadingViewController() {
-        let loadingDataVC = LoadingDataViewController(viewModel: LoadingDataViewModel(token: token, router: router))
+        let vc = ContentNavigationController(token: token, router: router)
         
-        router.changeRootViewController(with: loadingDataVC)
+        router.changeRootViewController(with: vc)
     }
     
     private func onAuthorizeResult(_ token: InstagramToken?, _ error: Error?) {

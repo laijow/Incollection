@@ -47,7 +47,7 @@ extension DataFetcherService: InstagramDataFetcher {
     func fetchInstagramUser(with token: InstagramToken) -> Observable<InstagramUserResult> {
         let defaultStringURL = InstagramApi.grathURL + "\(token.userId)"
         let components = [
-            "fields" : "id,username",
+            "fields" : "id,username,media",
             "access_token" : token.accessToken
         ]
         

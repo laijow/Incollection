@@ -10,6 +10,8 @@ import UIKit
 
 class ContentCollectionView: UICollectionView {
     
+    var viewModel: ContentCollectionViewViewModel!
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout = UICollectionViewLayout()) {
         let rowLayout = ContentCollectionViewLayout()
         super.init(frame: frame, collectionViewLayout: rowLayout)
@@ -40,12 +42,11 @@ extension ContentCollectionView: UICollectionViewDelegate {
 extension ContentCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return self.viewModel.numberOfItemsInSection(section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: ContentCollectionViewCell.reuseId, for: indexPath) as! ContentCollectionViewCell
         return cell
     }
-    
 }

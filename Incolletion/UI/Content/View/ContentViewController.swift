@@ -9,15 +9,20 @@ import UIKit
 
 class ContentViewController: UIViewController {
     
-    var collectionView: ContentCollectionView!
+    private var collectionView: ContentCollectionView!
     
-    init() {
+    private let viewModel: ContentViewControllerViewModel
+    
+    init(viewModel: ContentViewControllerViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.viewModel.loadingData()
         setupCollectionView()
     }
     
@@ -27,33 +32,18 @@ class ContentViewController: UIViewController {
     
     private func setupCollectionView() {
         collectionView = ContentCollectionView(frame: view.bounds)
-        
+        collectionView.viewModel = self.viewModel.getCollectionViewViewModel()
         view.addSubview(collectionView)
     }
-    
 }
 
-// MARK: SwiftUI
-import SwiftUI
-
-struct ContentViewControllerProvider: PreviewProvider {
-    @available(iOS 13.0.0, *)
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
+extension ContentViewController: ContentViewControllerViewModelViewModel {
     
-    struct ContainerView: UIViewControllerRepresentable {
-        
-        let viewController = ContentViewController()
-        
-        @available(iOS 13.0, *)
-        func makeUIViewController(context: UIViewControllerRepresentableContext<ContentViewControllerProvider.ContainerView>) -> ContentViewController {
-            return viewController
+    func loadingDataDidFinished(title: String?) {
+        if let title = title {
+            self.title = title
         }
         
-        @available(iOS 13.0, *)
-        func updateUIViewController(_ uiViewController: ContentViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ContentViewControllerProvider.ContainerView>) {
-            
-        }
+        self.collectionView.reloadData()
     }
 }

@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let router = DefaultRouter()
         if AppSettings.boolValue(.isLoggedIn) {
             let token = InstagramToken(accessToken: AppSettings.stringValue(.accessToken)!, userId: AppSettings.intValue(.userId)!)
-            rootViewController = LoadingDataViewController(viewModel: LoadingDataViewModel(token: token, router: router))
+            rootViewController = ContentNavigationController(token: token, router: router)
         } else {
             rootViewController = AuthorizeViewController(viewModel: AuthorizeViewModel(router: router))
         }
