@@ -19,7 +19,7 @@ class InstagramApi {
     static let grathURL = "https://graph.instagram.com/"
     
     static let instagramAppID = "866702484090439"
-    static let app_secret = "60d1dcfdd04322d131063875f7fb6409"
+    static let appSecret = "60d1dcfdd04322d131063875f7fb6409"
     static let redirectURIURLEncoded = "https%3A%2F%2Fwww.google.com%2F"
     static let redirectURI = "https://www.google.com/"
     static let boundary = "boundary=\(NSUUID().uuidString)"

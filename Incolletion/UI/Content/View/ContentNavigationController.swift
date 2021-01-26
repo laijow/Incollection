@@ -26,6 +26,7 @@ class ContentNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationBar.shadowImage = UIImage()
         self.createControllers()
     }
     

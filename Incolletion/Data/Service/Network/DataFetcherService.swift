@@ -30,7 +30,7 @@ extension DataFetcherService: InstagramDataFetcher {
         let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
         let parameters = [
             "client_id": InstagramApi.instagramAppID,
-            "client_secret": InstagramApi.app_secret,
+            "client_secret": InstagramApi.appSecret,
             "code": toCleanCode,
             "grant_type": InstagramApi.grantType,
             "redirect_uri": InstagramApi.redirectURI
