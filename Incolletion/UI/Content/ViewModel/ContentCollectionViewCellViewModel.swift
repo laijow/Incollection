@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 import RxSwift
 
 protocol ContentCollectionViewCellViewModelDelegate: class {
-    func fetchMediaDidFinish(mediaUrl: String)
+    func fetchMediaDidFinish(mediaUrl: String, typeImage: UIImage)
 }
 
 class ContentCollectionViewCellViewModel {
@@ -43,10 +44,20 @@ class ContentCollectionViewCellViewModel {
             }).disposed(by: disposeBag)
     }
     
+    private func createTypeImage(with mediaType: MediaType) -> UIImage {
+        let image: UIImage
+        switch mediaType {
+        case .IMAGE: image = UIImage()
+        case .VIDEO: image = UIImage(named: "play")!
+        case .CAROUSEL_ALBUM: image = UIImage(named: "manyPhoto")!
+        }
+        return image
+    }
+    
     private func fetchDidFinish(instagramMedia: InstagramMedia) {
         DispatchQueue.main.async {
-            let medialUrl = instagramMedia.mediaType == .VIDEO ? instagramMedia.thumbnailUrl : instagramMedia.mediaUrl
-            self.delegate.fetchMediaDidFinish(mediaUrl: medialUrl!)
+            let mediaUrl = instagramMedia.mediaType == .VIDEO ? instagramMedia.thumbnailUrl : instagramMedia.mediaUrl
+            self.delegate.fetchMediaDidFinish(mediaUrl: mediaUrl!, typeImage: self.createTypeImage(with: instagramMedia.mediaType))
         }
     }
 }
