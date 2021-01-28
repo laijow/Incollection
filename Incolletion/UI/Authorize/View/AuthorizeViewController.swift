@@ -9,16 +9,14 @@ import UIKit
 
 class AuthorizeViewController: UIViewController {
     
-    private let viewModel: AuthorizeViewModel
+    private lazy var viewModel = makeViewModel()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(viewModel: AuthorizeViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.delegate = self
     }
     
     override func viewDidLoad() {
@@ -39,6 +37,7 @@ class AuthorizeViewController: UIViewController {
     }
     
     @objc func instagramAuthorization() {
+        viewModel.delegate = self
         viewModel.startOfInstagramAuthorization()
     }
     

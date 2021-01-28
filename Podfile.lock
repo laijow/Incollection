@@ -13,6 +13,7 @@ PODS:
     - FBSDKShareKit/Share (= 8.2.0)
   - FBSDKShareKit/Share (8.2.0):
     - FBSDKCoreKit (~> 8.2.0)
+  - Resolver (1.4.0)
   - RxCocoa (6.0.0):
     - RxRelay (= 6.0.0)
     - RxSwift (= 6.0.0)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Resolver
   - RxCocoa
   - RxSwift
 
@@ -32,6 +34,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+    - Resolver
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -40,10 +43,11 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
   FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
   FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
+  Resolver: 9371a9c561477b2ff76408114fa3ba7e94d17afe
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
 
-PODFILE CHECKSUM: 281399c6230330e4dabe5126b3ebac6a778c8247
+PODFILE CHECKSUM: db4e0ac4b7d61f34c6b3c34f92c52970a30e7a64
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

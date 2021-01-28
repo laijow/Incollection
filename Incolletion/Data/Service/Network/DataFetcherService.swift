@@ -10,9 +10,9 @@ import RxSwift
 
 class DataFetcherService {
     
-    var networkDataFetcher: DataFetcher
+    private let networkDataFetcher: DataFetcher
     
-    init(networkDataFetcher: DataFetcher = NetworkDataFetcher()) {
+    init(networkDataFetcher: DataFetcher) {
         self.networkDataFetcher = networkDataFetcher
     }
     
@@ -26,7 +26,7 @@ class DataFetcherService {
 
 extension DataFetcherService: InstagramDataFetcher {
     
-    func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult> {
+    func fetchInstagramToken(with code: String) -> Observable<AuthorizeResult> {
         let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
         let parameters = [
             "client_id": InstagramApi.instagramAppID,
@@ -36,7 +36,7 @@ extension DataFetcherService: InstagramDataFetcher {
             "redirect_uri": InstagramApi.redirectURI
         ]
         let url = URL(string: InstagramApi.getAuthStringURL(.access_token))!
-        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramToken.self, method: .POST, parameters: parameters).map { result -> InstagramTokenResult in
+        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramTokenDTO.self, method: .POST, parameters: parameters).map { result -> AuthorizeResult in
             if result.isSuccess {
                 return .success(result.getResult()!)
             }
@@ -44,18 +44,18 @@ extension DataFetcherService: InstagramDataFetcher {
         }
     }
     
-    func fetchInstagramUser(with token: InstagramToken) -> Observable<InstagramUserResult> {
-        let defaultStringURL = InstagramApi.grathURL + "\(token.userId)"
+    func fetchInstagramUser(accessToken: String, userId: String) -> Observable<InstagramUserDataResult> {
+        let defaultStringURL = InstagramApi.grathURL + userId
         let components = [
             "fields" : "id,username,media",
-            "access_token" : token.accessToken
+            "access_token" : accessToken
         ]
         
         let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
         return networkDataFetcher.fetchGenericJSONData(url: url,
-                                                       type: InstagramUser.self,
+                                                       type: InstagramUserDTO.self,
                                                        method: .GET,
-                                                       parameters: nil).map { result -> InstagramUserResult in
+                                                       parameters: nil).map { result -> InstagramUserDataResult in
                                                         if result.isSuccess {
                                                         return .success(result.getResult()!)
                                                         }
@@ -64,17 +64,17 @@ extension DataFetcherService: InstagramDataFetcher {
         }
     }
     
-    func fetchInstagramMedia(with token: InstagramToken, mediaId: String) -> Observable<InstagramMediaResult> {
+    func fetchInstagramMedia(accessToken: String, mediaId: String) -> Observable<InstagramMediaResult> {
         let defaultStringURL = InstagramApi.grathURL + "\(mediaId)"
         let components = [
             "fields" : "caption,id,media_type,media_url,permalink,timestamp,username,thumbnail_url",
-            "access_token" : token.accessToken
+            "access_token" : accessToken
         ]
         
         let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
         
         return networkDataFetcher.fetchGenericJSONData(url: url,
-                                                       type: InstagramMedia.self,
+                                                       type: InstagramMediaDTO.self,
                                                        method: .GET,
                                                        parameters: nil).map { result -> InstagramMediaResult in
                                                         if result.isSuccess {

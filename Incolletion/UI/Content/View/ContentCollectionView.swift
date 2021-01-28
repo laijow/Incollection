@@ -10,7 +10,7 @@ import UIKit
 
 class ContentCollectionView: UICollectionView {
     
-    var viewModel: ContentCollectionViewViewModel?
+    lazy var viewModel = makeViewModel()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout = UICollectionViewLayout()) {
         let rowLayout = ContentCollectionViewLayout()
@@ -42,14 +42,14 @@ extension ContentCollectionView: UICollectionViewDelegate {
 extension ContentCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel?.numberOfItemsInSection(section) ?? 0
+        return self.viewModel.numberOfItemsInSection(section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: ContentCollectionViewCell.reuseId, for: indexPath) as! ContentCollectionViewCell
-        cell.viewModel = self.viewModel?.cellForItemAt(indexPath)
-        cell.viewModel?.delegate = cell as? ContentCollectionViewCellViewModelDelegate
-        cell.viewModel?.fetchMedia()
+        let mediaId = self.viewModel.cellForItemAt(indexPath)
+        cell.viewModel.delegate = cell as? ContentCollectionViewCellViewModelDelegate
+        cell.viewModel.fetchMedia(accessToken: self.viewModel.getAccessToken()!, mediaId: mediaId)
         return cell
     }
 }

@@ -9,23 +9,27 @@ import Foundation
 
 class ContentCollectionViewViewModel {
     
-    private let medias: [MediaData]?
-    private let fetcher: InstagramDataFetcher
-    private let token: InstagramToken?
+    private let userRepository: UserRepository
+    private let tokenRepository: TokenRepository
+    private var mediaIds: [String]?
     
-    init(medias: [MediaData]? = nil, fetcher: InstagramDataFetcher, token: InstagramToken?) {
-        self.medias = medias
-        self.fetcher = fetcher
-        self.token = token
+    init(userRepository: UserRepository, tokenRepository: TokenRepository) {
+        self.userRepository = userRepository
+        self.tokenRepository = tokenRepository
     }
     
     func numberOfItemsInSection(_ section: Int) -> Int {
-        guard let medias = medias else { return 0 }
-        return medias.count
+        guard let user = userRepository.getLastUser() else { return 0 }
+        mediaIds = user.mediaIds
+        return user.mediaIds.count
     }
     
-    func cellForItemAt(_ indexPath: IndexPath) -> ContentCollectionViewCellViewModel {
-        let media = medias![indexPath.row]
-        return ContentCollectionViewCellViewModel(fetcher: fetcher, mediaData: media, token: token)
+    func cellForItemAt(_ indexPath: IndexPath) -> String {
+        let mediaId = mediaIds![indexPath.row]
+        return mediaId
+    }
+    
+    func getAccessToken() -> String? {
+        return tokenRepository.getLastToken()?.accessToken
     }
 }

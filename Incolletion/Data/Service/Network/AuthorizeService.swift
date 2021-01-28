@@ -20,32 +20,18 @@ class AuthorizeService {
         
     private func presentAuthorization() -> Observable<Void> {
         return Observable<Void>.create {[weak self] observer in
-            self?.router.presentAuthorization(authUrl: (self?.buildAuthURL())!, authorizeService: self)
+            self?.router.presentAuthorization()
             observer.onNext(())
             observer.onCompleted()
             return Disposables.create()
         }
     }
-    
-    private func buildAuthURL() -> URL {
-        var components = URLComponents(string: InstagramApi.getAuthStringURL(.authorize))!
-        
-        components.queryItems = [
-            URLQueryItem(name: "client_id", value: InstagramApi.instagramAppID),
-            URLQueryItem(name: "redirect_uri", value: InstagramApi.redirectURI),
-            URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: InstagramApi.scope)
-        ]
-        
-        return components.url!
-    }
-    
 }
 
 extension AuthorizeService: AuthorizeServiceStarter {
     
     func start() -> Observable<InstagramTokenResult> {
-        presentAuthorization().flatMap {[weak self] _ -> Observable<InstagramTokenResult> in
+        return presentAuthorization().flatMap {[weak self] _ -> Observable<InstagramTokenResult> in
             guard let self = self else { return Observable.just(.failure(ErrorType.InvalidObject)) }
             return self.resolved.asObserver().share()
         }

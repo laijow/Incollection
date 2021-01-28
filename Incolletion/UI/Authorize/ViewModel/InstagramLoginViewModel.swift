@@ -13,13 +13,13 @@ import RxCocoa
 class InstagramLoginViewModel {
     
     private let authorizeService: AuthorizeServiceResolver
-    private let fetcher: InstagramDataFetcher
+    private let tokenRepository: TokenRepository
     
     private let relayBeginFinish = PublishRelay<InstagramTokenResult>()
     
-    init(authorizeService: AuthorizeServiceResolver, fetcher: InstagramDataFetcher = DataFetcherService()) {
+    init(authorizeService: AuthorizeServiceResolver, tokenRepository: TokenRepository) {
         self.authorizeService = authorizeService
-        self.fetcher = fetcher
+        self.tokenRepository = tokenRepository
     }
     
     func authorizeFinished(stringURL: String) -> Bool {
@@ -28,6 +28,19 @@ class InstagramLoginViewModel {
     
     private func resolve(_ result: InstagramTokenResult) {
         authorizeService.resolve(result: result)
+    }
+    
+    func buildAuthURL() -> URL {
+        var components = URLComponents(string: InstagramApi.getAuthStringURL(.authorize))!
+        
+        components.queryItems = [
+            URLQueryItem(name: "client_id", value: InstagramApi.instagramAppID),
+            URLQueryItem(name: "redirect_uri", value: InstagramApi.redirectURI),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "scope", value: InstagramApi.scope)
+        ]
+        
+        return components.url!
     }
 }
 
@@ -51,7 +64,7 @@ extension InstagramLoginViewModel: ViewModel {
             let code = String(result[range.upperBound...])
             
             guard let self = self else { return Signal.just(defaultError) }
-            return self.fetcher.fetchInstagramToken(with: code).asSignal(onErrorJustReturn: defaultError)
+            return self.tokenRepository.getToken(with: code).asSignal(onErrorJustReturn: defaultError)
         }
         let endFinish = input.endFinish.map { [weak self] result -> Bool in
             guard let self = self else { return false }

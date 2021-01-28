@@ -12,7 +12,7 @@ class NetworkDataFetcher: DataFetcher {
     
     var networking: Networking
     
-    init(networking: Networking = NetworkService()) {
+    init(networking: Networking) {
         self.networking = networking
     }
     

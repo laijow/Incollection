@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol InstagramDataFetcher {    
-    func fetchInstagramToken(with code: String) -> Observable<InstagramTokenResult>
-    func fetchInstagramUser(with token: InstagramToken) -> Observable<InstagramUserResult>
-    func fetchInstagramMedia(with token: InstagramToken, mediaId: String) -> Observable<InstagramMediaResult>
+    func fetchInstagramToken(with code: String) -> Observable<AuthorizeResult>
+    func fetchInstagramUser(accessToken: String, userId: String) -> Observable<InstagramUserDataResult>
+    func fetchInstagramMedia(accessToken: String, mediaId: String) -> Observable<InstagramMediaResult>
 }

@@ -18,24 +18,22 @@ class ContentCollectionViewCellViewModel {
     weak var delegate: ContentCollectionViewCellViewModelDelegate!
     
     private let fetcher: InstagramDataFetcher
-    private let mediaData: MediaData
-    private let token: InstagramToken?
+    private let mediaMapper: MediaMapper
     private var instagramMedia: InstagramMedia?
     private var disposeBag = DisposeBag()
-    
-    init(fetcher: InstagramDataFetcher, mediaData: MediaData, token: InstagramToken?) {
+        
+    init(fetcher: InstagramDataFetcher, mediaMapper: MediaMapper) {
         self.fetcher = fetcher
-        self.mediaData = mediaData
-        self.token = token
+        self.mediaMapper = mediaMapper
     }
     
-    func fetchMedia() {
-        guard let token = token else { return }
-        self.fetcher.fetchInstagramMedia(with: token, mediaId: mediaData.id)
+    func fetchMedia(accessToken: String, mediaId: String) {
+        self.fetcher.fetchInstagramMedia(accessToken: accessToken, mediaId: mediaId)
             .take(1)
             .subscribe(onNext: { result in
                 switch result {
-                case .success(let instagramMedia):
+                case .success(let result):
+                    let instagramMedia = self.mediaMapper.map(input: result)
                     self.instagramMedia = instagramMedia
                     self.fetchDidFinish(instagramMedia: instagramMedia)
                     print(instagramMedia.mediaUrl)

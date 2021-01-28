@@ -11,7 +11,7 @@ class ContentCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "ContentCollectionViewCell"
     
-    var viewModel: ContentCollectionViewCellViewModel?
+    lazy var viewModel = makeViewModel()
     
     private let myImageView: WebImageView = {
         let imageView = WebImageView()
@@ -64,8 +64,8 @@ class ContentCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             typeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             typeImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            typeImageView.heightAnchor.constraint(equalToConstant: 20),
-            typeImageView.widthAnchor.constraint(equalToConstant: 20)
+            typeImageView.heightAnchor.constraint(equalToConstant: 17),
+            typeImageView.widthAnchor.constraint(equalToConstant: 17)
         ])
     }
 }

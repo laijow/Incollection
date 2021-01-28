@@ -16,21 +16,19 @@ class ContentViewControllerViewModel {
     
     weak var delegate: ContentViewControllerViewModelViewModel!
     
-    private let token: InstagramToken?
-    private let router: Router
-    private let fetcher: InstagramDataFetcher
+    private let userRepository: UserRepository
+    private let tokenRepository: TokenRepository
     private var disposeBag = DisposeBag()
     private var user: InstagramUser?
     
-    init(token: InstagramToken?, router: Router, fetcher: InstagramDataFetcher = DataFetcherService()) {
-        self.token = token
-        self.router = router
-        self.fetcher = fetcher
+    init(userRepository: UserRepository, tokenRepository: TokenRepository) {
+        self.userRepository = userRepository
+        self.tokenRepository = tokenRepository
     }
     
     func loadingData() {
-        guard let token = self.token else { return }
-        fetcher.fetchInstagramUser(with: token)
+        guard let token = tokenRepository.getLastToken() else { return }
+        userRepository.getUser(accessToken: token.accessToken, userId: "\(token.userId)")
             .take(1)
             .subscribe(onNext: { result in
                 switch result {
@@ -41,10 +39,6 @@ class ContentViewControllerViewModel {
                 case .failure(let error): print(error.localizedDescription)
                 }
             }).disposed(by: disposeBag)
-    }
-    
-    func getCollectionViewViewModel() -> ContentCollectionViewViewModel {
-        return ContentCollectionViewViewModel(medias: user?.media.data, fetcher: fetcher, token: token)
     }
     
     private func loadingFinished(user: InstagramUser) {

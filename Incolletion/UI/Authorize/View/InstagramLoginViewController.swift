@@ -16,17 +16,14 @@ class InstagramLoginViewController: UIViewController {
     private var progressView: UIProgressView!
     private var webViewObservation: NSKeyValueObservation!
     
-    private let viewModel: InstagramLoginViewModel
-    private let authURL: URL
+    private lazy var viewModel = makeViewModel()
     
     // Rx
     private let disposeBag = DisposeBag()
     private let relayGetToken = PublishRelay<String>()
     private let relayEndFinish = PublishRelay<InstagramTokenResult>()
     
-    init(authUrl: URL, viewModel: InstagramLoginViewModel) {
-        self.authURL = authUrl
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,8 +40,9 @@ class InstagramLoginViewController: UIViewController {
         // Initializes web view
         let webView = makeWebView()
 
+        let url = viewModel.buildAuthURL()
         // Starts authorization
-        webView.load(URLRequest(url: authURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData))
+        webView.load(URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData))
         
         bindToModel()
     }
@@ -78,7 +76,7 @@ extension InstagramLoginViewController {
     
     private func bindToModel() {
         let input = InstagramLoginViewModel.Input(getToken: relayGetToken.asSignal(),
-                                                                endFinish: relayEndFinish.asSignal())
+                                                  endFinish: relayEndFinish.asSignal())
         let output = viewModel.transform(from: input)
         
         disposeBag.insert(

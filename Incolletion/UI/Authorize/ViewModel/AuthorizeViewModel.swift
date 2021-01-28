@@ -19,14 +19,15 @@ class AuthorizeViewModel {
     private(set) var token: InstagramToken?
     
     private let router: Router
+    private let authorizeService: AuthorizeService
     private var disposeBag = DisposeBag()
     
-    init(router: Router) {
+    init(router: Router, authorizeService: AuthorizeService) {
         self.router = router
+        self.authorizeService = authorizeService
     }
     
     func startOfInstagramAuthorization() {
-        let authorizeService = AuthorizeService(router: router)
         authorizeService.start()
             .take(1)
             .subscribe(onNext: { [weak self] result in
@@ -40,7 +41,7 @@ class AuthorizeViewModel {
     }
     
     func declareLoadingViewController() {
-        let vc = ContentNavigationController(token: token, router: router)
+        let vc = ContentNavigationController()
         
         router.changeRootViewController(with: vc)
     }

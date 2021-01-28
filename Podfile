@@ -17,5 +17,6 @@ target 'Incolletion' do
   pod 'FBSDKShareKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Resolver'
 
 end

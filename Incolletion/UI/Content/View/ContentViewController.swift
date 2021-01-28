@@ -11,18 +11,17 @@ class ContentViewController: UIViewController {
     
     private var collectionView: ContentCollectionView!
     
-    private let viewModel: ContentViewControllerViewModel
+    private lazy var viewModel = makeViewModel()
     
-    init(viewModel: ContentViewControllerViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.viewModel.loadingData()
+        viewModel.delegate = self
+        viewModel.loadingData()
         setupCollectionView()
     }
     
@@ -42,7 +41,6 @@ extension ContentViewController: ContentViewControllerViewModelViewModel {
         if let title = title {
             self.title = title
         }
-        collectionView.viewModel = self.viewModel.getCollectionViewViewModel()
         
         self.collectionView.reloadData()
     }

@@ -9,13 +9,8 @@ import Foundation
 import UIKit
 
 class ContentNavigationController: UINavigationController {
-        
-    private let token: InstagramToken?
-    private let router: Router
-    
-    init(token: InstagramToken?, router: Router) {
-        self.token = token
-        self.router = router
+            
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,7 +26,7 @@ class ContentNavigationController: UINavigationController {
     }
     
     private func createControllers() {
-        let vc = ContentViewController(viewModel: ContentViewControllerViewModel(token: self.token, router: self.router))
+        let vc = ContentViewController()
         viewControllers = [vc]
     }
     

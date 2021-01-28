@@ -12,11 +12,8 @@ class DefaultRouter: Router {
     
     private let window: UIWindow? = UIApplication.shared.windows.first
     
-    func presentAuthorization(authUrl: URL, authorizeService: AuthorizeServiceResolver?) {
-        guard let authorizeService = authorizeService else { return }
-        let vm = InstagramLoginViewModel(authorizeService: authorizeService)
-        let vc = InstagramLoginViewController(authUrl: authUrl,
-                                              viewModel: vm)
+    func presentAuthorization() {
+        let vc = InstagramLoginViewController()
         if #available(iOS 13.0, *) {
             vc.isModalInPresentation = true
         }
