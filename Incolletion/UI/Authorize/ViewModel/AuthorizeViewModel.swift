@@ -40,7 +40,7 @@ class AuthorizeViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func declareLoadingViewController() {
+    func declareContent() {
         let vc = ContentNavigationController()
         
         router.changeRootViewController(with: vc)
