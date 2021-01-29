@@ -28,9 +28,9 @@ class AuthorizeViewController: UIViewController {
     }
     
     func setupInstaButton() {
-        let button = UIButton(frame: CGRect(x: view.center.x - 100, y: view.center.y, width: 200, height: 50))
+        let width = view.bounds.width - 60
+        let button = InstagramButton(frame: CGRect(x: view.center.x - width/2, y: view.bounds.maxY - 100, width: width, height: 50))
         button.setTitle("Sign in with Instagram", for: .normal)
-        button.backgroundColor = .systemPink
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(instagramAuthorization), for: .touchUpInside)
         view.addSubview(button)
