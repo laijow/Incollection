@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol ContentViewControllerViewModelViewModel: class {
-    func loadingDataDidFinished(title: String?)
+    func loadingDataDidFinished(title: String)
 }
 
 class ContentViewControllerViewModel {
@@ -42,6 +42,7 @@ class ContentViewControllerViewModel {
     }
     
     private func loadingFinished(user: InstagramUser) {
+        
         DispatchQueue.main.async {
             self.delegate.loadingDataDidFinished(title: user.userName)
         }

@@ -10,6 +10,7 @@ import UIKit
 class ContentViewController: UIViewController {
     
     private var collectionView: ContentCollectionView!
+    private var leftBarButtonView: ContentLeftBarButtonView!
     private lazy var viewModel = makeViewModel()
     
     init() {
@@ -59,39 +60,9 @@ extension ContentViewController {
     }
     
     private func setupLeftButton(title: String?) {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 110, height: 34))
-        let image = UIImage(named: "dropArrow")!.withRenderingMode(.alwaysTemplate)
-        let label = UILabel()
-        let imageView = UIImageView(image: image)
-        let somespace: CGFloat = 5
+        leftBarButtonView = ContentLeftBarButtonView(title: title)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .buttonDark()
-        label.textColor = .buttonDark()
-        label.text = title
-               
-        customView.addSubview(label)
-        customView.addSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: customView.leadingAnchor),
-            label.topAnchor.constraint(equalTo: customView.topAnchor),
-            label.bottomAnchor.constraint(equalTo: customView.bottomAnchor),
-            label.widthAnchor.constraint(equalToConstant: label.contentWidthLimitation(maxWidth: 90))
-        ])
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: somespace),
-            imageView.topAnchor.constraint(equalTo: customView.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: customView.bottomAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 15)
-        ])
-        customView.backgroundColor = .red
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customView)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBarButtonView)
     }
     
     private func setupRightButton() {
@@ -108,11 +79,8 @@ extension ContentViewController {
 
 extension ContentViewController: ContentViewControllerViewModelViewModel {
     
-    func loadingDataDidFinished(title: String?) {
-        if let title = title {
-            self.title = title
-        }
-        
+    func loadingDataDidFinished(title: String) {
+        leftBarButtonView.updateTitle(title)
         self.collectionView.reloadData()
     }
 }

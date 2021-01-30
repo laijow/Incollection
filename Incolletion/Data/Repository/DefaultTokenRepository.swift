@@ -32,7 +32,15 @@ extension DefaultTokenRepository: TokenRepository {
     }
     
     func getLastToken() -> InstagramToken? {
-        return lastToken
+        let token: InstagramToken?
+        if let lastToken = lastToken {
+            token = lastToken
+        } else if AppSettings.boolValue(.isLoggedIn) {
+            token = InstagramToken(accessToken: AppSettings.stringValue(.accessToken)!, userId: AppSettings.intValue(.userId)!)
+        } else {
+            token = nil
+        }
+        return token
     }
     
     func clear() {

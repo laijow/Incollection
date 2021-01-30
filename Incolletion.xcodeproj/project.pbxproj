@@ -63,6 +63,8 @@
 		11F03CED25C3864400C45A0C /* InstagramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03CEC25C3864400C45A0C /* InstagramButton.swift */; };
 		11F03EB525C5080600C45A0C /* ContentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03EB425C5080600C45A0C /* ContentNavigationBar.swift */; };
 		11F03EC225C5331700C45A0C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03EC125C5331700C45A0C /* UILabel+Extension.swift */; };
+		11F03EC625C5483F00C45A0C /* ContentLeftBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03EC525C5483F00C45A0C /* ContentLeftBarButtonView.swift */; };
+		11F03EDB25C5708C00C45A0C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03EDA25C5708C00C45A0C /* UIView+Extension.swift */; };
 		11F80BEA25B50F21008AAAEE /* Result+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F80BE925B50F21008AAAEE /* Result+Extension.swift */; };
 		11F80C1E25B55BC5008AAAEE /* InstagramDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C1D25B55BC5008AAAEE /* InstagramDataFetcher.swift */; };
 		2B340C25E40029CFF385BD82 /* Pods_Incolletion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DFFE221D396D045FC169DE /* Pods_Incolletion.framework */; };
@@ -142,6 +144,8 @@
 		11F03CEC25C3864400C45A0C /* InstagramButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramButton.swift; sourceTree = "<group>"; };
 		11F03EB425C5080600C45A0C /* ContentNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNavigationBar.swift; sourceTree = "<group>"; };
 		11F03EC125C5331700C45A0C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		11F03EC525C5483F00C45A0C /* ContentLeftBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLeftBarButtonView.swift; sourceTree = "<group>"; };
+		11F03EDA25C5708C00C45A0C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		11F80BE925B50F21008AAAEE /* Result+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Extension.swift"; sourceTree = "<group>"; };
 		11F80C1D25B55BC5008AAAEE /* InstagramDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramDataFetcher.swift; sourceTree = "<group>"; };
 		7FB2ACB2AFD35F16B2995C7E /* Pods-IncolletionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IncolletionTests.release.xcconfig"; path = "Target Support Files/Pods-IncolletionTests/Pods-IncolletionTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				11B6529225AF419F00215FD4 /* CGRect+Extension.swift */,
 				11D3909325AB56440014B3B1 /* UIColor+Extension.swift */,
 				11F03EC125C5331700C45A0C /* UILabel+Extension.swift */,
+				11F03EDA25C5708C00C45A0C /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				11D3907625AB424D0014B3B1 /* ContentCollectionView.swift */,
 				11D3909725AB585A0014B3B1 /* ContentCollectionViewCell.swift */,
 				11D3909F25ABCE690014B3B1 /* ContentCollectionViewLayout.swift */,
+				11F03EC525C5483F00C45A0C /* ContentLeftBarButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */,
 				11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */,
 				11F03EB525C5080600C45A0C /* ContentNavigationBar.swift in Sources */,
+				11F03EDB25C5708C00C45A0C /* UIView+Extension.swift in Sources */,
 				11F03BF625C25ED800C45A0C /* RegisteringContainer.swift in Sources */,
 				11F03C1325C2623A00C45A0C /* DataContainer.swift in Sources */,
 				113B5E6025BBCD880081B461 /* LocalDataFetcher.swift in Sources */,
@@ -728,6 +735,7 @@
 				11D3904925AB3F230014B3B1 /* ContentViewController.swift in Sources */,
 				11735AF125B2CDAC00C27FBB /* InstagramLoginViewModel.swift in Sources */,
 				115F043E25BFA3C00085D52E /* ContentCollectionViewCellViewModel.swift in Sources */,
+				11F03EC625C5483F00C45A0C /* ContentLeftBarButtonView.swift in Sources */,
 				11735A8625B1CCD400C27FBB /* AuthorizeService.swift in Sources */,
 				11D3904525AB3F230014B3B1 /* AppDelegate.swift in Sources */,
 				11930C0C25B3F90E0099E7FD /* DataFetcherService.swift in Sources */,
