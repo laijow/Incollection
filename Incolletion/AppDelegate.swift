@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let rootViewController: UIViewController
         if AppSettings.boolValue(.isLoggedIn) {
-            rootViewController = ContentNavigationController()
+            rootViewController = ContentNavigationController(navigationBarClass: ContentNavigationBar.self, toolbarClass: nil)
         } else {
             rootViewController = AuthorizeViewController()
         }

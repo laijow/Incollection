@@ -41,7 +41,7 @@ class AuthorizeViewModel {
     }
     
     func declareContent() {
-        let vc = ContentNavigationController()
+        let vc = ContentNavigationController(navigationBarClass: ContentNavigationBar.self, toolbarClass: nil)
         
         router.changeRootViewController(with: vc)
     }

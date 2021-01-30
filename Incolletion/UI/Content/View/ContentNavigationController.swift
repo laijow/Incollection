@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class ContentNavigationController: UINavigationController {
-            
-    init() {
-        super.init(nibName: nil, bundle: nil)
+           
+    override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
+        super.init(navigationBarClass: navigationBarClass, toolbarClass: toolbarClass)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -20,12 +20,11 @@ class ContentNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationBar.shadowImage = UIImage()
-        self.createControllers()
+       
+        self.setupControllers()
     }
     
-    private func createControllers() {
+    private func setupControllers() {
         let vc = ContentViewController()
         viewControllers = [vc]
     }
