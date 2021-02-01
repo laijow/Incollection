@@ -13,7 +13,7 @@ class ContentCollectionView: UICollectionView {
     lazy var viewModel = makeViewModel()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout = UICollectionViewLayout()) {
-        let rowLayout = ContentCollectionViewLayout()
+        let rowLayout = ContentLayout()
         super.init(frame: frame, collectionViewLayout: rowLayout)
         
         autoresizingMask = [.flexibleWidth, .flexibleHeight]

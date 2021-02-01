@@ -10,6 +10,7 @@ import UIKit
 
 protocol Router: class {
     func presentAuthorization()
+    func presentViewController(with viewController: UIViewController)
     func changeRootViewController(with viewController: UIViewController)
 }
 

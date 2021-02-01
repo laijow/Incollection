@@ -10,9 +10,10 @@ import Foundation
 public enum AppSettings {
 
     public enum key: String {
-            case isLoggedIn = "isLoggedIn"
-            case accessToken = "accessToken"
-            case userId = "userId"
+        case isLoggedIn = "isLoggedIn"
+        case accessToken = "accessToken"
+        case userId = "userId"
+        case expiresIn = "expiresIn"
     }
 
     public static subscript(_ key: key) -> Any? {

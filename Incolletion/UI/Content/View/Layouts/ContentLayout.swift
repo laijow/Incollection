@@ -1,17 +1,23 @@
 //
-//  RowLayout.swift
+//  ContentLayout.swift
 //  Incolletion
 //
-//  Created by Анатолий Ем on 11.01.2021.
+//  Created by Анатолий Ем on 01.02.2021.
 //
 
-import Foundation
 import UIKit
 
-class ContentCollectionViewLayout: UICollectionViewLayout {
+enum ContentLayoutType {
+    case defaultType
+    case imagePickerType
+}
+
+class ContentLayout: UICollectionViewLayout {
     
     var contentBounds = CGRect.zero
     var cache = [UICollectionViewLayoutAttributes]()
+    
+    var layoutType: ContentLayoutType = .defaultType
 
     override func prepare() {
         super.prepare()
@@ -27,16 +33,29 @@ class ContentCollectionViewLayout: UICollectionViewLayout {
         var currentIndex = 0
         var lastFrame: CGRect = .zero
 
-        let fraction: CGFloat = 1.0 / 3.0
+        
+        let fraction: CGFloat
+        switch layoutType {
+        case .defaultType:
+            fraction = 1.0 / 3.0
+        case .imagePickerType:
+            fraction = 1.0 / 4.0
+        }
+        
         let cvWidth = collectionView.bounds.size.width
         let rowHeight = cvWidth * fraction
         while currentIndex < count {
             let segmentFrame = CGRect(x: 0, y: lastFrame.maxY + 1.0, width: cvWidth, height: rowHeight)
 
             var segmentRects = [CGRect]()
-            let horizontalFirstSlices = segmentFrame.dividedIntegral(fraction: fraction, from: .minXEdge)
-            let horizontalSecondSlices = horizontalFirstSlices.second.dividedIntegral(fraction: 0.5, from: .minXEdge)
-            segmentRects = [horizontalFirstSlices.first, horizontalSecondSlices.first, horizontalSecondSlices.second]
+            
+            switch layoutType {
+            case .defaultType:
+                segmentRects = sliceIntoThreeParts(segmentFrame: segmentFrame, fraction: fraction)
+            case .imagePickerType:
+                segmentRects = sliceIntoFourParts(segmentFrame: segmentFrame, fraction: fraction)
+            }
+            
 
             // Create and cache layout attributes for calculated frames.
             for rect in segmentRects {
@@ -86,7 +105,7 @@ class ContentCollectionViewLayout: UICollectionViewLayout {
     }
 
     // Perform a binary search on the cached attributes array.
-    func binSearch(_ rect: CGRect, start: Int, end: Int) -> Int? {
+    private func binSearch(_ rect: CGRect, start: Int, end: Int) -> Int? {
         if end < start { return nil }
 
         let mid = (start + end) / 2
@@ -101,6 +120,30 @@ class ContentCollectionViewLayout: UICollectionViewLayout {
                 return binSearch(rect, start: start, end: (mid - 1))
             }
         }
+    }
+    
+    private func sliceIntoThreeParts(segmentFrame: CGRect, fraction: CGFloat) -> [CGRect] {
+        let horizontalFirstSlices = segmentFrame.dividedIntegral(fraction: fraction, from: .minXEdge)
+        let horizontalSecondSlices = horizontalFirstSlices.second.dividedIntegral(fraction: 0.5, from: .minXEdge)
+         
+        return [
+            horizontalFirstSlices.first,
+            horizontalSecondSlices.first,
+            horizontalSecondSlices.second
+        ]
+    }
+    
+    private func sliceIntoFourParts(segmentFrame: CGRect, fraction: CGFloat) -> [CGRect] {
+        let horizontalFirstSlices = segmentFrame.dividedIntegral(fraction: fraction, from: .minXEdge)
+        let horizontalSecondSlices = horizontalFirstSlices.second.dividedIntegral(fraction: 1.0 / 3.0, from: .minXEdge)
+        let horizontalThirdSlices = horizontalSecondSlices.second.dividedIntegral(fraction: 0.5, from: .minXEdge)
+         
+        return [
+            horizontalFirstSlices.first,
+            horizontalSecondSlices.first,
+            horizontalThirdSlices.first,
+            horizontalThirdSlices.second
+        ]
     }
 
 }

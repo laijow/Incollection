@@ -10,6 +10,9 @@ import Resolver
 
 extension Resolver {
     public static func registerDomain() {
+        register() { DefaultImagePickerManager(router: resolve()) }
+            .implements(ImagePickerManager.self)
+            .scope(ResolverScope.application)
         register() { AuthorizeService(router: resolve()) }
             .implements(AuthorizeServiceStarter.self)
             .implements(AuthorizeServiceResolver.self)

@@ -52,6 +52,7 @@ class AuthorizeViewModel {
             self.token = token
             AppSettings[.accessToken] = token?.accessToken
             AppSettings[.userId] = token?.userId
+            AppSettings[.expiresIn] = token?.expiresIn
             AppSettings[.isLoggedIn] = true
             self.delegate?.onAuthorizeResult(error: error)
         }

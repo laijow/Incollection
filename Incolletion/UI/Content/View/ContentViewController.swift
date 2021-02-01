@@ -10,8 +10,14 @@ import UIKit
 class ContentViewController: UIViewController {
     
     private var collectionView: ContentCollectionView!
-    private var leftBarButtonView: ContentLeftBarButtonView!
+    private var leftBarButtonItem: ContentLeftBarButtonItem!
+    private let titleView = ContentTitleView()
+    private var pickerFrame: CGRect {
+        return CGRect(x: 0, y: 0, width: view.frame.width, height: 500)
+    }
+    private var imagePicker: ContentImagePickerView!
     private lazy var viewModel = makeViewModel()
+    private lazy var pickerManager = makePickerManager()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -24,10 +30,19 @@ class ContentViewController: UIViewController {
         viewModel.loadingData()
         setupCollectionView()
         setupNavigationItem()
+        setupImagePicker()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupImagePicker() {
+        
+        imagePicker = ContentImagePickerView(frame: pickerFrame)
+        imagePicker.delegate = self
+        view.addSubview(imagePicker)
+        imagePicker.backgroundColor = .red
     }
 }
 
@@ -49,20 +64,12 @@ extension ContentViewController {
     }
     
     private func setupTitleView() {
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
-        let titleImageView = UIImageView(image: UIImage(named: "preview")!)
-        
-        titleImageView.frame = containerView.bounds
-        titleImageView.contentMode = .scaleAspectFit
-        containerView.addSubview(titleImageView)
-        
-        navigationItem.titleView = containerView
+        navigationItem.titleView = ContentTitleView()
     }
     
     private func setupLeftButton(title: String?) {
-        leftBarButtonView = ContentLeftBarButtonView(title: title)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBarButtonView)
+        leftBarButtonItem = ContentLeftBarButtonItem(title: title)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     private func setupRightButton() {
@@ -73,14 +80,25 @@ extension ContentViewController {
     }
     
     @objc private func addPhoto() {
-        
+        pickerManager.openGallery()
+    }
+}
+
+extension ContentViewController: ContentImagePickerViewDelegate {
+    
+    func didChangePosition(with yPosition: CGFloat) {
+        print(yPosition)
+    }
+    
+    func endChangedPosition(with yPosition: CGFloat) {
+        print(yPosition)
     }
 }
 
 extension ContentViewController: ContentViewControllerViewModelViewModel {
     
     func loadingDataDidFinished(title: String) {
-        leftBarButtonView.updateTitle(title)
+        leftBarButtonItem.updateTitle(title)
         self.collectionView.reloadData()
     }
 }

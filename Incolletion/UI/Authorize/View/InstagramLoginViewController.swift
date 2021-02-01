@@ -21,6 +21,7 @@ class InstagramLoginViewController: UIViewController {
     // Rx
     private let disposeBag = DisposeBag()
     private let relayGetToken = PublishRelay<String>()
+    private let relayGetLongLiveToken = PublishRelay<InstagramTokenResult>()
     private let relayEndFinish = PublishRelay<InstagramTokenResult>()
     
     init() {
@@ -75,11 +76,16 @@ class InstagramLoginViewController: UIViewController {
 extension InstagramLoginViewController {
     
     private func bindToModel() {
-        let input = InstagramLoginViewModel.Input(getToken: relayGetToken.asSignal(),
+        let input = InstagramLoginViewModel.Input(getShortLiveToken: relayGetToken.asSignal(),
+                                                  getLongLiveToken: relayGetLongLiveToken.asSignal(),
                                                   endFinish: relayEndFinish.asSignal())
         let output = viewModel.transform(from: input)
         
         disposeBag.insert(
+            output.shortLiveToken.drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.relayGetLongLiveToken.accept(result)
+            }),
             output.beginFinish.drive(onNext: { [weak self] result in
                 guard let self = self else { return }
                 self.relayEndFinish.accept(result)

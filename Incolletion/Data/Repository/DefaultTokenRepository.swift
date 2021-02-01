@@ -18,16 +18,47 @@ class DefaultTokenRepository {
         self.fetcher = fetcher
         self.tokenMapper = tokenMapper
     }
+    
+    private func updateToken(with result: InstagramTokenDTOResult) -> InstagramTokenResult {
+        let tokenResult = result.map { self.tokenMapper.map(input:$0) }
+        let newToken = tokenResult.getResult()
+        
+        guard let lastToken = self.lastToken else {
+            self.lastToken = newToken
+            return tokenResult
+        }
+        
+        guard let token = newToken else { return .failure(ErrorType.InvalidObject) }
+        
+        lastToken.accessToken = token.accessToken
+        if token.expiresIn != 0 {
+            lastToken.expiresIn = token.expiresIn
+        }
+        
+        return .success(lastToken)
+    }
 }
 
 extension DefaultTokenRepository: TokenRepository {
-    
-    func getToken(with code: String) -> Observable<InstagramTokenResult> {
-         return self.fetcher.fetchInstagramToken(with: code).map { [weak self] result in
+        
+    func getShortLiveToken(with code: String) -> Observable<InstagramTokenResult> {
+         return self.fetcher.fetchInstagramShortLifeToken(with: code).map { [weak self] result in
             guard let self = self else { return .failure(ErrorType.InvalidObject) }
-            let token = result.map { self.tokenMapper.map(input: $0) }
-            self.lastToken = token.getResult()
-            return token
+            return self.updateToken(with: result)
+        }
+    }
+    
+    func getLongLiveToken(with accessToken: String) -> Observable<InstagramTokenResult> {
+        return self.fetcher.fetchInstagramLongLifeToken(accessToken: accessToken).map { [weak self] result in
+            guard let self = self else { return .failure(ErrorType.InvalidObject) }
+            return self.updateToken(with: result)
+        }
+    }
+    
+    func refreshToken(with accessToken: String) -> Observable<InstagramTokenResult> {
+        return self.fetcher.fetchInstagramRefreshToken(accessToken: accessToken).map { [weak self] result in
+            guard let self = self else { return .failure(ErrorType.InvalidObject) }
+            return self.updateToken(with: result)
         }
     }
     
@@ -36,7 +67,7 @@ extension DefaultTokenRepository: TokenRepository {
         if let lastToken = lastToken {
             token = lastToken
         } else if AppSettings.boolValue(.isLoggedIn) {
-            token = InstagramToken(accessToken: AppSettings.stringValue(.accessToken)!, userId: AppSettings.intValue(.userId)!)
+            token = InstagramToken(accessToken: AppSettings.stringValue(.accessToken)!, userId: AppSettings.intValue(.userId)!, expiresIn: AppSettings.intValue(.expiresIn)!)
         } else {
             token = nil
         }

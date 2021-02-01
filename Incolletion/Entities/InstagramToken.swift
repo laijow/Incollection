@@ -12,11 +12,13 @@ typealias InstagramTokenResultOpt = Result<InstagramToken?, Error>
 
 class InstagramToken {
     
-    let accessToken: String
+    var accessToken: String
     let userId: Int
+    var expiresIn: Int
     
-    init(accessToken: String, userId: Int) {
+    init(accessToken: String, userId: Int, expiresIn: Int) {
         self.accessToken = accessToken
         self.userId = userId
+        self.expiresIn = expiresIn
     }
 }

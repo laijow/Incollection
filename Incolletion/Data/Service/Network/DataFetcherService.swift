@@ -26,7 +26,7 @@ class DataFetcherService {
 
 extension DataFetcherService: InstagramDataFetcher {
     
-    func fetchInstagramToken(with code: String) -> Observable<AuthorizeResult> {
+    func fetchInstagramShortLifeToken(with code: String) -> Observable<InstagramTokenDTOResult> {
         let toCleanCode = code.replacingOccurrences(of: "#_", with: "")
         let parameters = [
             "client_id": InstagramApi.instagramAppID,
@@ -36,7 +36,40 @@ extension DataFetcherService: InstagramDataFetcher {
             "redirect_uri": InstagramApi.redirectURI
         ]
         let url = URL(string: InstagramApi.getAuthStringURL(.access_token))!
-        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramTokenDTO.self, method: .POST, parameters: parameters).map { result -> AuthorizeResult in
+        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramTokenDTO.self, method: .POST, parameters: parameters).map { result -> InstagramTokenDTOResult in
+            if result.isSuccess {
+                return .success(result.getResult()!)
+            }
+            return .failure(result.getError()!)
+        }
+    }
+    
+    func fetchInstagramLongLifeToken(accessToken: String) -> Observable<InstagramTokenDTOResult> {
+        let defaultStringURL = InstagramApi.grathURL + "access_token"
+        let components = [
+            "grant_type" : "ig_exchange_token",
+            "client_secret" : InstagramApi.appSecret,
+            "access_token" : accessToken
+        ]
+        
+        let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
+        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramTokenDTO.self, method: .GET, parameters: nil).map { result -> InstagramTokenDTOResult in
+            if result.isSuccess {
+                return .success(result.getResult()!)
+            }
+            return .failure(result.getError()!)
+        }
+    }
+    
+    func fetchInstagramRefreshToken(accessToken: String) -> Observable<InstagramTokenDTOResult> {
+        let defaultStringURL = InstagramApi.grathURL + "refresh_access_token"
+        let components = [
+            "grant_type" : "ig_refresh_token",
+            "access_token" : accessToken
+        ]
+        
+        let url = buildGETMethodURL(components: components, defaultStringURL: defaultStringURL)
+        return networkDataFetcher.fetchGenericJSONData(url: url, type: InstagramTokenDTO.self, method: .GET, parameters: nil).map { result -> InstagramTokenDTOResult in
             if result.isSuccess {
                 return .success(result.getResult()!)
             }

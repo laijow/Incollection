@@ -61,11 +61,13 @@ class ContentCollectionViewCell: UICollectionViewCell {
     
     private func setupTypeImageView() {
         addSubview(typeImageView)
+        let padding: CGFloat = 5
+        let size = CGSize(width: 17, height: 17)
         NSLayoutConstraint.activate([
-            typeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            typeImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            typeImageView.heightAnchor.constraint(equalToConstant: 17),
-            typeImageView.widthAnchor.constraint(equalToConstant: 17)
+            typeImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            typeImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            typeImageView.heightAnchor.constraint(equalToConstant: size.height),
+            typeImageView.widthAnchor.constraint(equalToConstant: size.width)
         ])
     }
 }

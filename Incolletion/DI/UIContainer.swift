@@ -18,6 +18,7 @@ extension ContentCollectionViewCell: Resolving {
 
 extension ContentViewController: Resolving {
     func makeViewModel() -> ContentViewControllerViewModel { return resolver.resolve() }
+    func makePickerManager() -> ImagePickerManager { return resolver.resolve() }
 }
 
 extension AuthorizeViewController: Resolving {
@@ -26,6 +27,14 @@ extension AuthorizeViewController: Resolving {
 
 extension InstagramLoginViewController: Resolving {
     func makeViewModel() -> InstagramLoginViewModel { return resolver.resolve() } 
+}
+
+extension ContentImagePickerView: Resolving {
+    func makeViewModel() -> ContentImagePickerViewViewModel { return resolver.resolve() }
+}
+
+extension ContentImagePickerCollectionView: Resolving {
+    func makeViewModel() -> ContentImagePickerCollectionViewViewModel { return resolver.resolve() }
 }
 
 extension Resolver {
@@ -37,5 +46,7 @@ extension Resolver {
         register { ContentViewControllerViewModel(userRepository: resolve(), tokenRepository: resolve()) }
         register { ContentCollectionViewViewModel(userRepository: resolve(), tokenRepository: resolve()) }
         register { ContentCollectionViewCellViewModel(fetcher: resolve(), mediaMapper: resolve()) }
+        register { ContentImagePickerView() }
+        register { ContentImagePickerCollectionViewViewModel(router: resolve()) }
     }
 }
