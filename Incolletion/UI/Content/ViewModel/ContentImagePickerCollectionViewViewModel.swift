@@ -22,14 +22,16 @@ class ContentImagePickerCollectionViewViewModel {
     }
     
     private let router: Router
+    private let pickerManager: ImagePickerManager
     
     var allPhotos : PHFetchResult<PHAsset>? = nil
     var allImages: [UIImage]? = nil
     var authorizeStatus: AuthorizeStatus = .authorized
     weak var delegate: ContentImagePickerCollectionViewViewModelDelegate!
     
-    init(router: Router) {
+    init(router: Router, pickerManager: ImagePickerManager) {
         self.router = router
+        self.pickerManager = pickerManager
         
         getAllPhotos()
     }
@@ -56,7 +58,7 @@ class ContentImagePickerCollectionViewViewModel {
                 print("Good to proceed")
                 self.authorizeStatus = .authorized
                 let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [NSSortDescriptor(key: nil, ascending: true)]
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
                 self.allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
                 self.loadDidFinishing()
             case .denied, .restricted:
@@ -65,22 +67,13 @@ class ContentImagePickerCollectionViewViewModel {
                 print("Not determined yet")
             case .limited:
                 self.authorizeStatus = .limited
-                self.presentPicker()
+                DispatchQueue.main.async {
+                    self.pickerManager.openGallery()
+                }
                 break
             @unknown default:
                 fatalError("")
             }
-        }
-    }
-    
-    private func presentPicker() {
-        if #available(iOS 14, *) {
-            var configuration = PHPickerConfiguration()
-            configuration.selectionLimit = 0
-            configuration.filter = .any(of: [.images, .livePhotos])
-            let picker = PHPickerViewController(configuration: configuration)
-            
-            self.router.presentViewController(with: picker)
         }
     }
     

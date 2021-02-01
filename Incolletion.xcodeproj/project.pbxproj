@@ -480,7 +480,7 @@
 				11D3908125AB50810014B3B1 /* ContentNavigationController.swift */,
 				11F03EB425C5080600C45A0C /* ContentNavigationBar.swift */,
 				11D3904825AB3F230014B3B1 /* ContentViewController.swift */,
-				11F03F3225C7809D00C45A0C /* CollectionVIews */,
+				11F03F3225C7809D00C45A0C /* Collections */,
 				11F03F3725C780F400C45A0C /* Cells */,
 				11F03F3A25C780FB00C45A0C /* Layouts */,
 				11F03F2225C6D96800C45A0C /* ContentImagePickerView.swift */,
@@ -535,13 +535,13 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
-		11F03F3225C7809D00C45A0C /* CollectionVIews */ = {
+		11F03F3225C7809D00C45A0C /* Collections */ = {
 			isa = PBXGroup;
 			children = (
 				11D3907625AB424D0014B3B1 /* ContentCollectionView.swift */,
 				11F03F3325C780BE00C45A0C /* ContentImagePickerCollectionView.swift */,
 			);
-			path = CollectionVIews;
+			path = Collections;
 			sourceTree = "<group>";
 		};
 		11F03F3725C780F400C45A0C /* Cells */ = {

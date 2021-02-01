@@ -17,7 +17,6 @@ class ContentViewController: UIViewController {
     }
     private var imagePicker: ContentImagePickerView!
     private lazy var viewModel = makeViewModel()
-    private lazy var pickerManager = makePickerManager()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -80,7 +79,7 @@ extension ContentViewController {
     }
     
     @objc private func addPhoto() {
-        pickerManager.openGallery()
+        
     }
 }
 
