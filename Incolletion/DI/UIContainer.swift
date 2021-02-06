@@ -33,7 +33,7 @@ extension ContentImagePickerView: Resolving {
 }
 
 extension ContentImagePickerCollectionView: Resolving {
-    func makeViewModel() -> ContentImagePickerCollectionViewViewModel { return resolver.resolve() }
+    func makeViewModel() -> ContentImagePickerCollectionViewModel { return resolver.resolve() }
 }
 
 extension Resolver {
@@ -46,6 +46,6 @@ extension Resolver {
         register { ContentCollectionViewViewModel(userRepository: resolve(), tokenRepository: resolve()) }
         register { ContentCollectionViewCellViewModel(fetcher: resolve(), mediaMapper: resolve()) }
         register { ContentImagePickerView() }
-        register { ContentImagePickerCollectionViewViewModel(router: resolve(), pickerManager: resolve()) }
+        register { ContentImagePickerCollectionViewModel(router: resolve(), pickerManager: resolve()) }
     }
 }

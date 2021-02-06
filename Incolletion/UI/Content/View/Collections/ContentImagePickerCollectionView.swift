@@ -55,7 +55,7 @@ extension ContentImagePickerCollectionView: UICollectionViewDataSource {
     }
 }
 
-extension ContentImagePickerCollectionView: ContentImagePickerCollectionViewViewModelDelegate {
+extension ContentImagePickerCollectionView: ContentImagePickerCollectionViewModelDelegate {
     func loadDidFinishing() {
         reloadData()
     }

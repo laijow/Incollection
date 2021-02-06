@@ -10,11 +10,11 @@ import UIKit
 import Photos
 import PhotosUI
 
-protocol ContentImagePickerCollectionViewViewModelDelegate: class {
+protocol ContentImagePickerCollectionViewModelDelegate: class {
     func loadDidFinishing()
 }
 
-class ContentImagePickerCollectionViewViewModel {
+class ContentImagePickerCollectionViewModel {
     
     enum AuthorizeStatus {
         case authorized
@@ -27,7 +27,7 @@ class ContentImagePickerCollectionViewViewModel {
     var allPhotos : PHFetchResult<PHAsset>? = nil
     var allImages: [UIImage]? = nil
     var authorizeStatus: AuthorizeStatus = .authorized
-    weak var delegate: ContentImagePickerCollectionViewViewModelDelegate!
+    weak var delegate: ContentImagePickerCollectionViewModelDelegate!
     
     init(router: Router, pickerManager: ImagePickerManager) {
         self.router = router
@@ -58,7 +58,7 @@ class ContentImagePickerCollectionViewViewModel {
                 print("Good to proceed")
                 self.authorizeStatus = .authorized
                 let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
                 self.allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
                 self.loadDidFinishing()
             case .denied, .restricted:
@@ -85,7 +85,7 @@ class ContentImagePickerCollectionViewViewModel {
 }
 
 @available(iOS 14, *)
-extension ContentImagePickerCollectionViewViewModel: PHPickerViewControllerDelegate {
+extension ContentImagePickerCollectionViewModel: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)

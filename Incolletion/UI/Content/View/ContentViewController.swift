@@ -12,10 +12,17 @@ class ContentViewController: UIViewController {
     private var collectionView: ContentCollectionView!
     private var leftBarButtonItem: ContentLeftBarButtonItem!
     private let titleView = ContentTitleView()
+    private var pickerHeight: CGFloat {
+        return view.frame.height / 1.5
+    }
     private var pickerFrame: CGRect {
-        return CGRect(x: 0, y: 0, width: view.frame.width, height: 500)
+        return CGRect(x: 0,
+                      y: view.frame.maxY - pickerHeight,
+                      width: view.frame.width,
+                      height: pickerHeight)
     }
     private var imagePicker: ContentImagePickerView!
+    
     private lazy var viewModel = makeViewModel()
     
     init() {

@@ -68,8 +68,15 @@ extension AuthorizeViewController {
 extension AuthorizeViewController {
     
     private func setupInstaButton() {
-        let width = view.bounds.width - 60
-        let button = InstagramButton(frame: CGRect(x: view.center.x - width/2, y: view.bounds.maxY - 100, width: width, height: 50))
+        let instaButtonLeadingMargin: CGFloat = 30
+        let instaButtonBottimMargin: CGFloat = 100
+        let instaButtonHeight: CGFloat = 50
+        
+        let width = view.bounds.width - instaButtonLeadingMargin*2
+        let button = InstagramButton(frame: CGRect(x: view.center.x - width/2,
+                                                   y: view.bounds.maxY - instaButtonBottimMargin,
+                                                   width: width,
+                                                   height: instaButtonHeight))
         button.setTitle("Sign in with Instagram", for: .normal)
         button.titleLabel?.font = UIFont(name: "Noteworthy-Bold", size: 20)
         button.setTitleColor(.white, for: .normal)
@@ -139,7 +146,9 @@ extension AuthorizeViewController: AuthorizeViewControllerViewModelDelegate {
 extension AuthorizeViewController {
     
     func showErrorAlert(_ error: Error) {
-        let alert = UIAlertController.init(title: "Ошибка авторизации.", message: "При попытке авторизации, произошла ошибка.", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Ошибка авторизации.",
+                                           message: "При попытке авторизации, произошла ошибка.",
+                                           preferredStyle: .alert)
         let action = UIAlertAction(title: "Понятно", style: .default) { (action) in
             self.viewModel.declareContent()
         }

@@ -73,7 +73,7 @@
 		11F03F3E25C7811100C45A0C /* ContentImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03F3D25C7811100C45A0C /* ContentImagePickerCollectionViewCell.swift */; };
 		11F03F4225C7815B00C45A0C /* LocalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03F4125C7815B00C45A0C /* LocalImageView.swift */; };
 		11F03F4625C7841D00C45A0C /* ContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03F4525C7841D00C45A0C /* ContentLayout.swift */; };
-		11F03F4E25C78A8500C45A0C /* ContentImagePickerCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewViewModel.swift */; };
+		11F03F4E25C78A8500C45A0C /* ContentImagePickerCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewModel.swift */; };
 		11F80BEA25B50F21008AAAEE /* Result+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F80BE925B50F21008AAAEE /* Result+Extension.swift */; };
 		11F80C1E25B55BC5008AAAEE /* InstagramDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C1D25B55BC5008AAAEE /* InstagramDataFetcher.swift */; };
 		2B340C25E40029CFF385BD82 /* Pods_Incolletion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DFFE221D396D045FC169DE /* Pods_Incolletion.framework */; };
@@ -163,7 +163,7 @@
 		11F03F3D25C7811100C45A0C /* ContentImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		11F03F4125C7815B00C45A0C /* LocalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImageView.swift; sourceTree = "<group>"; };
 		11F03F4525C7841D00C45A0C /* ContentLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLayout.swift; sourceTree = "<group>"; };
-		11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImagePickerCollectionViewViewModel.swift; sourceTree = "<group>"; };
+		11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImagePickerCollectionViewModel.swift; sourceTree = "<group>"; };
 		11F80BE925B50F21008AAAEE /* Result+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Extension.swift"; sourceTree = "<group>"; };
 		11F80C1D25B55BC5008AAAEE /* InstagramDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramDataFetcher.swift; sourceTree = "<group>"; };
 		7FB2ACB2AFD35F16B2995C7E /* Pods-IncolletionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IncolletionTests.release.xcconfig"; path = "Target Support Files/Pods-IncolletionTests/Pods-IncolletionTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -362,7 +362,7 @@
 				115F044125BFA5C60085D52E /* ContentCollectionViewViewModel.swift */,
 				115F043D25BFA3C00085D52E /* ContentCollectionViewCellViewModel.swift */,
 				11F03F2E25C77CFD00C45A0C /* ContentImagePickerViewViewModel.swift */,
-				11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewViewModel.swift */,
+				11F03F4D25C78A8500C45A0C /* ContentImagePickerCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -480,10 +480,10 @@
 				11D3908125AB50810014B3B1 /* ContentNavigationController.swift */,
 				11F03EB425C5080600C45A0C /* ContentNavigationBar.swift */,
 				11D3904825AB3F230014B3B1 /* ContentViewController.swift */,
+				11F03F2225C6D96800C45A0C /* ContentImagePickerView.swift */,
 				11F03F3225C7809D00C45A0C /* Collections */,
 				11F03F3725C780F400C45A0C /* Cells */,
 				11F03F3A25C780FB00C45A0C /* Layouts */,
-				11F03F2225C6D96800C45A0C /* ContentImagePickerView.swift */,
 				11F03F1925C6D46600C45A0C /* Controls */,
 			);
 			path = View;
@@ -796,7 +796,7 @@
 				11D3904F25AB3F230014B3B1 /* Incolletion.xcdatamodeld in Sources */,
 				11735A8E25B1D11900C27FBB /* InstagramLoginViewController.swift in Sources */,
 				11735AF925B2D1A500C27FBB /* ViewModel.swift in Sources */,
-				11F03F4E25C78A8500C45A0C /* ContentImagePickerCollectionViewViewModel.swift in Sources */,
+				11F03F4E25C78A8500C45A0C /* ContentImagePickerCollectionViewModel.swift in Sources */,
 				11D3904925AB3F230014B3B1 /* ContentViewController.swift in Sources */,
 				11735AF125B2CDAC00C27FBB /* InstagramLoginViewModel.swift in Sources */,
 				115F043E25BFA3C00085D52E /* ContentCollectionViewCellViewModel.swift in Sources */,

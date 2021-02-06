@@ -18,5 +18,6 @@ target 'Incolletion' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Resolver'
+  pod 'SnapKit'
 
 end

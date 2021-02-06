@@ -20,6 +20,7 @@ PODS:
   - RxRelay (6.0.0):
     - RxSwift (= 6.0.0)
   - RxSwift (6.0.0)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Resolver
   - RxCocoa
   - RxSwift
+  - SnapKit
 
 SPEC REPOS:
   trunk:
@@ -38,6 +40,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SnapKit
 
 SPEC CHECKSUMS:
   FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
@@ -47,7 +50,8 @@ SPEC CHECKSUMS:
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: db4e0ac4b7d61f34c6b3c34f92c52970a30e7a64
+PODFILE CHECKSUM: 231e8c0c51537ddb283dfdfef1a8e1642d4a0500
 
 COCOAPODS: 1.10.1
