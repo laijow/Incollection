@@ -44,6 +44,7 @@
 		11D3908225AB50810014B3B1 /* ContentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3908125AB50810014B3B1 /* ContentNavigationController.swift */; };
 		11D3909425AB56440014B3B1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3909325AB56440014B3B1 /* UIColor+Extension.swift */; };
 		11D3909825AB585A0014B3B1 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D3909725AB585A0014B3B1 /* ContentCollectionViewCell.swift */; };
+		11DCAB2D25CFCD24007E41EC /* Constrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCAB2C25CFCD24007E41EC /* Constrains.swift */; };
 		11F03BF625C25ED800C45A0C /* RegisteringContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03BF525C25ED800C45A0C /* RegisteringContainer.swift */; };
 		11F03C1325C2623A00C45A0C /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03C1225C2623A00C45A0C /* DataContainer.swift */; };
 		11F03C1725C2635400C45A0C /* DomainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F03C1625C2635400C45A0C /* DomainContainer.swift */; };
@@ -134,6 +135,7 @@
 		11D3908125AB50810014B3B1 /* ContentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNavigationController.swift; sourceTree = "<group>"; };
 		11D3909325AB56440014B3B1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		11D3909725AB585A0014B3B1 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		11DCAB2C25CFCD24007E41EC /* Constrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrains.swift; sourceTree = "<group>"; };
 		11F03BF525C25ED800C45A0C /* RegisteringContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteringContainer.swift; sourceTree = "<group>"; };
 		11F03C1225C2623A00C45A0C /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataContainer.swift; sourceTree = "<group>"; };
 		11F03C1625C2635400C45A0C /* DomainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainContainer.swift; sourceTree = "<group>"; };
@@ -416,6 +418,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		11C06B9225CF0E98005BF625 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				11DCAB2C25CFCD24007E41EC /* Constrains.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		11D3903825AB3F230014B3B1 = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				11D3904425AB3F230014B3B1 /* AppDelegate.swift */,
+				11C06B9225CF0E98005BF625 /* Helpers */,
 				11F03C0425C25F5B00C45A0C /* DI */,
 				11009AEA25B3CDA600DC3940 /* Data */,
 				11009AD225B3CCC500DC3940 /* Domain */,
@@ -772,6 +783,7 @@
 				11009ACC25B3CC9B00DC3940 /* DefaultRouter.swift in Sources */,
 				11735AAB25B1D95800C27FBB /* ContentViewControllerViewModel.swift in Sources */,
 				11F03EB525C5080600C45A0C /* ContentNavigationBar.swift in Sources */,
+				11DCAB2D25CFCD24007E41EC /* Constrains.swift in Sources */,
 				11F03F3425C780BE00C45A0C /* ContentImagePickerCollectionView.swift in Sources */,
 				11F03EDB25C5708C00C45A0C /* UIView+Extension.swift in Sources */,
 				11F03BF625C25ED800C45A0C /* RegisteringContainer.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreGraphics
 import SnapKit
 
 protocol ContentImagePickerViewDelegate: class {
@@ -18,26 +19,35 @@ class ContentImagePickerView: UIView {
     private lazy var viewModel = makeViewModel()
     
     private let panGesture = UIPanGestureRecognizer()
+    private var tapGesture = UITapGestureRecognizer()
     private var collectionView: ContentImagePickerCollectionView!
     private var headerView: UIView!
+    private var imageView: UIImageView!
+    
     private var panGestureAnchorPoint: CGPoint?
-    private var oldYPosition : CGFloat!
+    private var currentYPosition : CGFloat!
     private var startYPosition : CGFloat!
-    private let heightHeaderView: CGFloat = 50
+    private var shadowLayer: CAShapeLayer!
+    private var cornerRadius: CGFloat {
+        return onTop
+            ? Constrains.pickerDeployedCornerRadius
+            : Constrains.pickerCollapsedCornerRadius
+    }
+    
     private var onTop: Bool = true
     
     weak var delegate : ContentImagePickerViewDelegate!
     
-    private var shadowLayer: CAShapeLayer!
-         
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         startYPosition = frame.origin.y
-        oldYPosition = startYPosition
+        currentYPosition = startYPosition
         setupHeaderView()
-        setupPunGesture()
+        setupPanGesture()
+        setupTapGesture()
         setupCollectionView()
+        setupImageView()
     }
     
     required init?(coder: NSCoder) {
@@ -47,19 +57,21 @@ class ContentImagePickerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        backgroundColor = .clear
         setupShadow()
     }
-        
-    private func animatePosition(withYPosition yPosition: CGFloat) {
-        guard startYPosition != 0 else {
-            return
+    
+    private func setupImageView() {
+        imageView = UIImageView(image: UIImage(named: "plus"))
+        addSubview(imageView)
+        let margin: CGFloat = 7
+        imageView.snp.makeConstraints { (make) in
+            make.top.equalTo(snp.top).offset(margin)
+            make.left.equalTo(snp.left).offset(margin)
+            make.right.equalTo(snp.right).offset(-margin)
+            make.bottom.equalTo(snp.bottom).offset(-margin)
         }
         
-        onTop = yPosition == startYPosition
-        UIView.animate(withDuration: 0.2) {
-            self.frame.origin.y = yPosition
-        }
+        imageView.isHidden = true
     }
 }
 
@@ -70,15 +82,9 @@ extension ContentImagePickerView {
     private func setupShadow() {
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
-            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
-            shadowLayer.fillColor = UIColor.white.cgColor
-
-            shadowLayer.shadowColor = UIColor.lightGray.cgColor
-            shadowLayer.shadowPath = shadowLayer.path
-            shadowLayer.shadowOpacity = 0.4
-            shadowLayer.shadowRadius = 4
-
-            layer.insertSublayer(shadowLayer, at: 0)
+            
+            addShadowAndCornerRadius(cornerRadius: cornerRadius,
+                                     shadowLayer: shadowLayer)
         }
     }
     
@@ -87,13 +93,14 @@ extension ContentImagePickerView {
         addSubview(headerView)
         
         headerView.backgroundColor = .mainWhite()
-        headerView.layer.cornerRadius = 10
+        headerView.layer.cornerRadius = cornerRadius
+        layer.cornerRadius = cornerRadius
         
         headerView.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top)
             make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right)
-            make.height.equalTo(heightHeaderView)
+            make.height.equalTo(Constrains.pickerHeaderViewHeight)
         }
     }
     
@@ -112,63 +119,66 @@ extension ContentImagePickerView {
 
 extension ContentImagePickerView {
     
-    private func setupPunGesture() {
+    private func setupPanGesture() {
         panGesture.addTarget(self, action: #selector(handlePanGesture(_:)))
         panGesture.maximumNumberOfTouches = 1
                
         headerView.addGestureRecognizer(panGesture)
     }
     
-    @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    private func setupTapGesture() {
+        tapGesture.addTarget(self, action: #selector(tap(_:)))
         
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tap(_ tapRecognized: UITapGestureRecognizer) {
+        guard tapGesture == tapRecognized, !onTop else { return }
+        
+        imageView.isHidden = true
+        onTop = true
+        animate()
+    }
+    
+    @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard  panGesture === gestureRecognizer else { assert(false); return }
         
-        switch gestureRecognizer.state {
-        case .possible:
-            break
-        case .began:
-            panGestureAnchorPoint = gestureRecognizer.location(in: self)
-            break
-        case .changed:
-            guard let oldPoint = panGestureAnchorPoint else { return }
-            let gesturePoint = gestureRecognizer.location(in: self)
-            let yPosition = gesturePoint.y + oldYPosition - oldPoint.y
-            
-            guard yPosition > startYPosition else {
-                oldYPosition = startYPosition
-                return
+        let y = changeYPosition(gestureRecognizer,
+                                startYPosition: startYPosition,
+                                currentYPosition: &currentYPosition,
+                                onTop: &onTop,
+                                gesturePoint: &panGestureAnchorPoint)
+        guard let _ = y else { return }
+        
+        animate()
+    }
+    
+    private func updateUI() {
+        shadowLayer = nil
+        layer.sublayers?.remove(at: 0)
+        headerView.layer.cornerRadius = cornerRadius
+        layer.cornerRadius = cornerRadius
+        setupShadow()
+        if !onTop {
+            imageView.isHidden = false
+        }
+    }
+    
+    private func animate() {
+        if onTop {
+            imageView.isHidden = true
+        } else {
+            self.updateUI()
+        }
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
+            self.frame = self.onTop
+                ? Constrains.pickerDeployedFrame
+                : Constrains.pickerСollapsedFrame
+        } completion: { (success) in
+            if success {
+                self.updateUI()
             }
-            oldYPosition = yPosition
-            frame.origin.y = yPosition
-             
-            delegate?.didChangePosition(with: yPosition)
-            break
-        case .cancelled:
-            break
-        case .ended:
-            let heightScreen = frame.size.height + startYPosition
-            let maximumFingerTravel: CGFloat = 30
-            let headerViewMaxY = heightScreen - heightHeaderView
-             
-            let newYPosition: CGFloat
-            if !onTop {
-                newYPosition = oldYPosition <= heightScreen - maximumFingerTravel * 2 + heightHeaderView
-                    ? startYPosition
-                    : headerViewMaxY
-            } else {
-                newYPosition = oldYPosition <= startYPosition + maximumFingerTravel
-                    ? startYPosition
-                    : headerViewMaxY
-            }
-             
-            animatePosition(withYPosition: newYPosition)
-            delegate?.endChangedPosition(with: oldYPosition)
-            break
-        case .failed:
-            assert(panGestureAnchorPoint == nil)
-            break
-        @unknown default:
-            fatalError("Unknow state recognizer")
         }
     }
 }

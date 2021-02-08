@@ -44,11 +44,9 @@ class ContentViewController: UIViewController {
     }
     
     private func setupImagePicker() {
-        
-        imagePicker = ContentImagePickerView(frame: pickerFrame)
+        imagePicker = ContentImagePickerView(frame: Constrains.pickerDeployedFrame)
         imagePicker.delegate = self
         view.addSubview(imagePicker)
-        imagePicker.backgroundColor = .red
     }
 }
 

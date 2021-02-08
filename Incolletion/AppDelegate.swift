@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        AppSettings[.isLoggedIn] = false
-        AppSettings[.accessToken] = nil
-        AppSettings[.userId] = nil
-        
+//        AppSettings[.isLoggedIn] = false
+//        AppSettings[.accessToken] = nil
+//        AppSettings[.userId] = nil
+//        
         let rootViewController: UIViewController
         if AppSettings.boolValue(.isLoggedIn) {
             rootViewController = ContentNavigationController(navigationBarClass: ContentNavigationBar.self, toolbarClass: nil)
